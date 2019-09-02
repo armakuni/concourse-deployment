@@ -8,7 +8,7 @@ platform: linux
 inputs:
   - name: concourse-deployment
 ​run:
-  path: concourse-deployment/create-teams/task.sh
+  path: concourse-deployment/ci/create-teams/task.sh
 
 
 
