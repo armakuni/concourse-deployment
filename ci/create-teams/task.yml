@@ -8,6 +8,3 @@ inputs:
   - name: concourse-deployment
 ​run:
   path: concourse-deployment/ci/create-teams/task.sh
-
-
-
