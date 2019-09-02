@@ -6,5 +6,5 @@ image_resource:
     tag: 3.7.4-slim
 inputs:
   - name: concourse-deployment
-​run:
+run:
   path: concourse-deployment/ci/create-teams/task.sh
