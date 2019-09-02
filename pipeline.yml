@@ -6,4 +6,17 @@ resources:
       uri: git@github.com:armakuni/concourse-deployment.git
       branch: master
       private_key: {{git-private-key}}
+jobs:
+  - name: create-teams
+    plan:
+      - get: concourse-deployment
+        trigger: true
+      - task: teams-creation
+        file: concourse-deployment/ci/create-teams/task.yml
+  - name: create-pipelines
+    plan:
+      - get: concourse-deployment
+        trigger: true
+      - task: pipelines-creation
+        file: concourse-deployment/ci/create-pipelines/task.yml
 
