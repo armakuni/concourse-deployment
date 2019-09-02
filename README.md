@@ -4,15 +4,9 @@
 
 Run the container
 
-        docker run -ti jnonino/control-tower bash
+        docker run --tty --interactive --env AWS_ACCESS_KEY_ID='<YOUR_AWS_ACCESS_KEY>' --env AWS_SECRET_ACCESS_KEY='<YOUR_AWS_SECRET_KEY>' --name control-tower jnonino/control-tower bash
 
-Inside the container make sure you have one of the following:
-
-- The environment variables `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` are set.
-- Credentials for the default profile in `~/.aws/credentials` are present.
-- Credentials for a profile in `~/.aws/credentials` are present and `AWS_DEFAULT_PROFILE` is set.
-
-Run Control Tower commands:
+After running that command you will prompted to the container environment, you can run the following Control Tower commands:
 
 - **deploy**: Deploys or updates a Concourse ([Documentation](https://github.com/EngineerBetter/control-tower/blob/master/docs/deploy.md))
 - **destroy**: Destroys a Concourse ([Documentation](https://github.com/EngineerBetter/control-tower/blob/master/docs/destroy.md))
