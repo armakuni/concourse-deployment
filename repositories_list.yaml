@@ -3,10 +3,12 @@
     repositories:
       - url: https://bitbucket.org/armakuni/ak-learning
         pipeline_name: ak-learning
-        pipeline_config_path: [ ci/pipeline.yml ]
+        pipeline_config_path: ci/pipeline.yml
+        pipeline_vars_path: []
       - url: https://bitbucket.org/armakuni/ak-toolbox
         pipeline_name: ak-toolbox
-        pipeline_config_path: [ ci/pipeline.yml ]
+        pipeline_config_path: ci/pipeline.yml
+        pipeline_vars_path: []
       - url: https://bitbucket.org/armakuni/k8sappdeploy
         pipeline_name: k8sappdeploy
         pipeline_config_path: ci/pipeline.yml
