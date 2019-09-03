@@ -1,0 +1,449 @@
+#	Provide a name to substitute for the full names of resources
+fullnameOverride: nil
+
+#	Specific image digest to use in place of a tag.
+imageDigest: nil
+
+#	Concourse image pull policy
+imagePullPolicy: IfNotPresent
+
+#	Array of imagePullSecrets in the namespace for pulling images
+imagePullSecrets: []
+
+#	Concourse image version
+imageTag: 5.4.0
+
+#	Concourse image
+image: concourse/concourse
+
+#	Provide a name in place of concourse for app: labels
+nameOverride: nil
+
+#	Enable Concourse persistence using Persistent Volume Claims
+persistence.enabled: TRUE
+
+#	Concourse Worker Persistent Volume Access Mode
+persistence.worker.accessMode: ReadWriteOnce
+
+#	Concourse Worker Persistent Volume Storage Size
+persistence.worker.size: 20Gi
+
+#	Concourse Worker Persistent Volume Storage Class
+persistence.worker.storageClass: generic
+
+#	Enable PostgreSQL as a chart dependency
+postgresql.enabled: TRUE
+
+#	Persistent Volume Access Mode
+postgresql.persistence.accessModes: ["ReadWriteOnce"]
+
+#	Enable PostgreSQL persistence using Persistent Volume Claims
+postgresql.persistence.enabled: TRUE
+
+#	Persistent Volume Storage Size
+postgresql.persistence.size: 8Gi
+
+#	Concourse data Persistent Volume Storage Class
+postgresql.persistence.storageClass: nil
+
+#	PostgreSQL Database to create
+postgresql.postgresqlDatabase: concourse
+
+#	PostgreSQL Password for the new user
+postgresql.postgresqlPassword: concourse
+
+#	PostgreSQL User to create
+postgresql.postgresqlUsername: concourse
+
+#	RBAC version
+rbac.apiVersion: v1beta1
+
+#	Enables creation of RBAC resources
+rbac.create: TRUE
+
+#	Name of the service account to use for web pods if rbac.create is false
+rbac.webServiceAccountName: default
+
+#	Name of the service account to use for workers if rbac.create is false
+rbac.workerServiceAccountName: default
+
+#	AWS Access Key ID for Secrets Manager access
+secrets.awsSecretsmanagerAccessKey: nil
+
+#	AWS Secret Access Key ID for Secrets Manager access
+secrets.awsSecretsmanagerSecretKey: nil
+
+#	AWS Session Token for Secrets Manager access
+secrets.awsSecretsmanagerSessionToken: nil
+
+#	AWS Access Key ID for SSM access
+secrets.awsSsmAccessKey: nil
+
+#	AWS Secret Access Key ID for SSM access
+secrets.awsSsmSecretKey: nil
+
+#	AWS Session Token for SSM access
+secrets.awsSsmSessionToken: nil
+
+#	Client ID for the BitbucketCloud OAuth
+secrets.bitbucketCloudClientId: nil
+
+#	Client Secret for the BitbucketCloud OAuth
+secrets.bitbucketCloudClientSecret: nil
+
+#	CA certificate for cf auth provider
+secrets.cfCaCert: nil
+
+#	Client ID for cf auth provider
+secrets.cfClientId: nil
+
+#	Client secret for cf auth provider
+secrets.cfClientSecret: nil
+
+#	Create the secret resource from the following values. See Secrets
+secrets.create: TRUE
+
+#	Value of PEM-encoded CA cert file to use to verify the CredHub server SSL cert.
+secrets.credhubCaCert: nil
+
+#	Client ID for CredHub authorization.
+secrets.credhubClientId: nil
+
+#	Client secret for CredHub authorization.
+secrets.credhubClientSecret: nil
+
+#	Client key for Credhub authorization.
+secrets.credhubClientKey: nil
+
+#	Client cert for Credhub authorization
+secrets.credhubClientCert: nil
+
+#	current encryption key
+secrets.encryptionKey: nil
+
+#	CA certificate for Enterprise Github OAuth
+secrets.githubCaCert: nil
+
+#	Application client ID for GitHub OAuth
+secrets.githubClientId: nil
+
+#	Application client secret for GitHub OAuth
+secrets.githubClientSecret: nil
+
+#	Application client ID for GitLab OAuth
+secrets.gitlabClientId: nil
+
+#	Application client secret for GitLab OAuth
+secrets.gitlabClientSecret: nil
+
+#	Concourse Host Public Key
+secrets.hostKeyPub: See values.yaml
+
+#	Concourse Host Private Key
+secrets.hostKey: See values.yaml
+
+#	Password used to authenticate with influxdb
+secrets.influxdbPassword: nil
+
+#	CA Certificate for LDAP
+secrets.ldapCaCert: nil
+
+#	Create concourse local users. Default username and password are test:testSee values.yaml
+secrets.localUsers: 
+
+#	CA certificate for Generic OAuth
+secrets.oauthCaCert: nil
+
+#	Application client ID for Generic OAuth
+secrets.oauthClientId: nil
+
+#	Application client secret for Generic OAuth
+secrets.oauthClientSecret: nil
+
+#	CA certificate for OIDC Oauth
+secrets.oidcCaCert: nil
+
+#	Application client ID for OIDI OAuth
+secrets.oidcClientId: nil
+
+#	Application client secret for OIDC OAuth
+secrets.oidcClientSecret: nil
+
+#	old encryption key, used for key rotation
+secrets.oldEncryptionKey: nil
+
+#	PostgreSQL CA certificate
+secrets.postgresCaCert: nil
+
+#	PostgreSQL Client certificate
+secrets.postgresClientCert: nil
+
+#	PostgreSQL Client key
+secrets.postgresClientKey: nil
+
+#	PostgreSQL User Password
+secrets.postgresPassword: nil
+
+#	PostgreSQL User Name
+secrets.postgresUser: nil
+
+#	Concourse Session Signing Private Key
+secrets.sessionSigningKey: See values.yaml
+
+#	SSL certificate to verify Syslog server
+secrets.syslogCaCert: nil
+
+#	Array of team names and worker public keys for external workers
+secrets.teamAuthorizedKeys: nil
+
+#	Paramter to pass when logging in via the backend
+secrets.vaultAuthParam: nil
+
+#	CA certificate use to verify the vault server SSL cert
+secrets.vaultCaCert: nil
+
+#	Vault Client Certificate
+secrets.vaultClientCert: nil
+
+#	Vault Client Key
+secrets.vaultClientKey: nil
+
+#	Vault periodic client token
+secrets.vaultClientToken: nil
+
+#	TLS certificate for the web component to terminate TLS connections
+secrets.webTlsCert: nil
+
+#	An RSA private key, used to encrypt HTTPS traffic
+secrets.webTlsKey: nil
+
+#	Concourse Worker Public Key
+secrets.workerKeyPub: See values.yaml
+
+#	Concourse Worker Private Key
+secrets.workerKey: See values.yaml
+
+#	Additional affinities to apply to web pods. E.g: node affinity
+web.additionalAffinities: {}
+
+#	VolumeMounts to be added to the web pods
+web.additionalVolumeMounts: nil
+
+#	Volumes to be added to the web pods
+web.additionalVolumes: nil
+
+#	Annotations to be added to the web pods
+web.annotations: {}
+
+#	Specify the mount directory of the web auth secrets
+web.authSecretsPath: /concourse-auth
+
+#	Specify the mount directory of the web credhub secrets
+web.credhubSecretsPath: /concourse-credhub
+
+#	Use IP of Pod's node overrides agentHost
+web.datadog.agentHostUseHostIP: FALSE
+
+#	Datadog Agent host
+web.datadog.agentHost: 127.0.0.1
+
+#	Datadog Agent port
+web.datadog.agentPort: 8125
+
+#	Enable or disable Datadog metrics
+web.datadog.enabled: FALSE
+
+#	Prefix for emitted metrics
+web.datadog.prefix: "concourse.ci"
+
+#	Enable or disable the web component
+web.enabled: TRUE
+
+#	Configure additional environment variables for the web containers
+web.env: []
+
+#	Concourse Web Ingress annotations
+web.ingress.annotations: {}
+
+#	Enable Concourse Web Ingress
+web.ingress.enabled: FALSE
+
+#	Concourse Web Ingress Hostnames
+web.ingress.hosts: []
+
+#	Concourse Web Ingress TLS configuration
+web.ingress.tls: []
+
+#	Specify the mount directory of the web keys secrets
+web.keySecretsPath: /concourse-keys
+
+#	Additional labels to be added to the worker pods
+web.labels: {}
+
+#	Minimum consecutive failures for the probe to be considered failed after having succeeded
+web.livenessProbe.failureThreshold: 5
+
+#	Path to access on the HTTP server when performing the healthcheck
+web.livenessProbe.httpGet.path: /api/v1/info
+
+#	Name or number of the port to access on the container
+web.livenessProbe.httpGet.port: atc
+
+#	Number of seconds after the container has started before liveness probes are initiated
+web.livenessProbe.initialDelaySeconds: 10
+
+#	How often (in seconds) to perform the probe
+web.livenessProbe.periodSeconds: 15
+
+#	Number of seconds after which the probe times out
+web.livenessProbe.timeoutSeconds: 3
+
+#	Override the Concourse Web components name
+web.nameOverride: nil
+
+#	Node selector for web nodes
+web.nodeSelector: {}
+
+#	Specify the mount directory of the web postgresql secrets
+web.postgresqlSecretsPath: /concourse-postgresql
+
+#	Path to access on the HTTP server when performing the healthcheck
+web.readinessProbe.httpGet.path: /api/v1/info
+
+#	Name or number of the port to access on the container
+web.readinessProbe.httpGet.port: atc
+
+#	Number of Concourse Web replicas
+web.replicas: 1
+
+#	Minimum amount of cpu resources requested
+web.resources.requests.cpu: 100m
+
+#	Minimum amount of memory resources requested
+web.resources.requests.memory: 128Mi
+
+#	Concourse Web Service annotations
+web.service.annotations: nil
+
+#	Sets the nodePort for atc when using NodePort
+web.service.atcNodePort: nil
+
+#	Sets the nodePort for atc tls when using NodePort
+web.service.atcTlsNodePort: nil
+
+#	Additional concourse web service labels
+web.service.labels: nil
+
+#	The IP to use when web.service.type is LoadBalancer
+web.service.loadBalancerIP: nil
+
+#	Concourse Web Service Load Balancer Source IP ranges
+web.service.loadBalancerSourceRanges: nil
+
+#	Sets the nodePort for tsa when using NodePort
+web.service.tsaNodePort: nil
+
+#	Concourse Web service type
+web.service.type: ClusterIP
+
+#	Array of extra containers to run alongside the Concourse web container
+web.sidecarContainers: nil
+
+#	Strategy for updates to deployment.
+web.strategy: {}
+
+#	Specify the mount directory of the web syslog secrets
+web.syslogSecretsPath: /concourse-syslog
+
+#	Where in the container the web TLS secrets should be mounted
+web.tlsSecretsPath: /concourse-web-tls
+
+#	Tolerations for the web nodes
+web.tolerations: []
+
+#	Specify the mount directory of the web vault secrets
+web.vaultSecretsPath: /concourse-vault
+
+#	Additional affinities to apply to worker pods. E.g: node affinity
+worker.additionalAffinities: {}
+
+#	VolumeMounts to be added to the worker pods
+worker.additionalVolumeMounts: nil
+
+#	Volumes to be added to the worker pods
+worker.additionalVolumes: nil
+
+#	Annotations to be added to the worker pods
+worker.annotations: {}
+
+#	Removes any previous state created in concourse.worker.workDir
+worker.cleanUpWorkDirOnStart: TRUE
+
+#	When persistance is disabled this value will be used to limit the emptyDir volume size
+worker.emptyDirSize: nil
+
+#	Enable or disable the worker component. You should set postgres.enabled=false in order not to get an unnecessary Postgres chart deployed
+worker.enabled: TRUE
+
+#	Configure additional environment variables for the worker container(s)
+worker.env: []
+
+#	Should the workers be forced (as opposed to preferred) to be on different nodes?
+worker.hardAntiAffinity: FALSE
+
+#	Specify the mount directory of the worker keys secrets
+worker.keySecretsPath: /concourse-keys
+
+#	Minimum consecutive failures for the probe to be considered failed after having succeeded
+worker.livenessProbe.failureThreshold: 5
+
+#	Path to access on the HTTP server when performing the healthcheck
+worker.livenessProbe.httpGet.path: /
+
+#	Name or number of the port to access on the container
+worker.livenessProbe.httpGet.port: worker-hc
+
+#	Number of seconds after the container has started before liveness probes are initiated
+worker.livenessProbe.initialDelaySeconds: 10
+
+#	How often (in seconds) to perform the probe
+worker.livenessProbe.periodSeconds: 15
+
+#	Number of seconds after which the probe times out
+worker.livenessProbe.timeoutSeconds: 3
+
+#	Minimum number of workers available after an eviction
+worker.minAvailable: 1
+
+#	Override the Concourse Worker components name
+worker.nameOverride: nil
+
+#	Node selector for worker nodes
+worker.nodeSelector: {}
+
+#	OrderedReady or Parallel (requires Kubernetes >= 1.7)
+worker.podManagementPolicy: Parallel
+
+#	Periodic probe of container service readiness
+worker.readinessProbe: {}
+
+#	Number of Concourse Worker replicas
+worker.replicas: 2
+
+#	Minimum amount of cpu resources requested
+worker.resources.requests.cpu: 100m
+
+#	Minimum amount of memory resources requested
+worker.resources.requests.memory: 512Mi
+
+#	Array of extra containers to run alongside the Concourse worker container
+worker.sidecarContainers: nil
+
+#	Upper bound for graceful shutdown to allow the worker to drain its tasks
+worker.terminationGracePeriodSeconds: 60
+
+#	Tolerations for the worker nodes
+worker.tolerations: []
+
+#	OnDelete or RollingUpdate (requires Kubernetes >= 1.7)
+worker.updateStrategy: RollingUpdate
