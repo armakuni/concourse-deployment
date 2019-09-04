@@ -1,8 +1,13 @@
 #!/bin/sh
 
-# Installing Git
+# Installing git and wget
 apt-get update
-apt-get install -y git
+apt-get install -y git wget
+
+# Getting fly tool
+wget -qO fly https://$CONCOURSE_URL/api/v1/cli?arch=amd64&platform=linux
+mv fly /usr/local/bin
+chmod +x /usr/local/bin/fly
 
 # Install Python dependencies
 pip install -r concourse-deployment/ci/create-teams-pipelines/requirements.txt
