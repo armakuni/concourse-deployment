@@ -73,11 +73,13 @@ teams = get_teams(data)
 for team in teams:
   target = team
   print("Creating Target: " + target)
-  create_target_command = create_target_command(target, team, CONCOURSE_URL, CONCOURSE_USERNAME, CONCOURSE_PASSWORD)
-  os.system(create_target_command)
+  command_create_target = create_target_command(target, team, CONCOURSE_URL, CONCOURSE_USERNAME, CONCOURSE_PASSWORD)
+  print(command_create_target)
+  os.system(command_create_target)
   
   print("Creating Team: " + team)
-  create_team_command = create_team_command(target, team)
+  command_create_team = create_team_command(target, team)
+  print(command_create_team)
   os.system(create_team_command)
   
   print("Fly Targets")
@@ -87,7 +89,7 @@ for team in teams:
     path = team + "-" + repository['pipeline_name']
     print("     Cloning Repository: " + repository['url'])
     # Repo.clone_from(repository['url'], path)
-    command_to_set_pipeline = create_set_pipeline_command(target, repository['pipeline_name'], repository['pipeline_config_path'], repository['pipeline_vars_path'])
-    print("     Command to Set Pipeline: " + command_to_set_pipeline) # REMOVE THIS LINE
-    # os.system(command)
+    command_set_pipeline = create_set_pipeline_command(target, repository['pipeline_name'], repository['pipeline_config_path'], repository['pipeline_vars_path'])
+    print("     Command to Set Pipeline: " + command_set_pipeline) # REMOVE THIS LINE
+    # os.system(command_set_pipeline)
     # os.system("rm -rf " + path)
