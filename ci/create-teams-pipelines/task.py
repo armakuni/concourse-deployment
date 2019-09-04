@@ -38,19 +38,20 @@ def get_repositories_from_team(metadata, team):
 def create_target_command(target, team, concourse_url, concourse_username, concourse_password):
   command = "fly login"
   command += " --verbose"
+  command += " --insecure"
   command += " --target " + target
   command += " --concourse-url " + concourse_url
   command += " --username " + concourse_username
   command += " --password " + concourse_password
   command += " --team-name " + team
-  command += " --insecure"
   return command
 
 
 def create_team_command(target, team):
-  command = "fly set-team --non-interactive "
-  command += " --verbose"
-  command += "--target " + target
+  command = "fly set-team"
+  command += " --verbose "
+  command += " --non-interactive"
+  command += " --target " + target
   command += " --team-name " + team
   command += " --config " + TEAMS_CONFIG_FILE
   return command
@@ -59,13 +60,12 @@ def create_team_command(target, team):
 def create_set_pipeline_command(target, pipeline_name, pipeline_config_path, pipeline_vars_paths):
   command = "fly set-pipeline"
   command += " --verbose"
-  command += "--target " + target
+  command += " --target " + target
   command += " --pipeline " + pipeline_name
   command += " --config " + pipeline_config_path
   for vars_path in pipeline_vars_paths:
     command += " --load-vars-from " + vars_path
   return command
-
 
 
 data = process_yaml(REPOSITORIES_LIST_FILE)
