@@ -5,7 +5,7 @@ apt-get update
 apt-get install -y git wget
 
 # Getting fly tool
-wget -qO fly https://$CONCOURSE_URL/api/v1/cli?arch=amd64&platform=linux
+wget -O fly "$CONCOURSE_URL/api/v1/cli?arch=amd64&platform=linux"
 mv fly /usr/local/bin
 chmod +x /usr/local/bin/fly
 
