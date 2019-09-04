@@ -35,13 +35,13 @@ def get_repositories_from_team(metadata, team):
   return metadata[team]
 
 
-def create_target_command(target, concourse_url, concourse_username, concourse_password):
+def create_target_command(target, team, concourse_url, concourse_username, concourse_password):
   command = "fly login"
   command += " --target " + target
   command += " --concourse-url " + concourse_url
   command += " --username " + concourse_username
-  command += " --password " + password
-  command += " --team-name " + target
+  command += " --password " + concourse_password
+  command += " --team-name " + team
   command += " --insecure"
   return command
 
@@ -69,13 +69,9 @@ data = process_yaml(REPOSITORIES_LIST_FILE)
 teams = get_teams(data)
 for team in teams:
   target = team
-  command_to_create_target = create_target_command(target, CONCOURSE_URL, CONCOURSE_USERNAME, CONCOURSE_PASSWORD)
-  print("Command to Create Target: " + command_to_create_target) # REMOVE THIS LINE
-  #os.system(command_to_create_target)
-  command_to_create_team = create_team_command(target)
-  print("Command to Create Team: " + command_to_create_team)
-  # os.system(command_to_create_team)
-  for repository in get_repositories_from_team(data,team):
+  os.system(create_target_command(target, team, CONCOURSE_URL, CONCOURSE_USERNAME, CONCOURSE_PASSWORD))
+  os.system(create_team_command(target))
+  for repository in get_repositories_from_team(data, team):
     path = team + "-" + repository['pipeline_name']
     print("     Cloning Repository: " + repository['url'])
     # Repo.clone_from(repository['url'], path)
