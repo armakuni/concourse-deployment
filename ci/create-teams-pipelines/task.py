@@ -10,7 +10,6 @@ REPOSITORIES_LIST_FILE = BASE_CI_PATH + "repositories_list.yml"
 TEAMS_CONFIG_FILE = BASE_CI_PATH + "teams-config.yml"
 
 
-
 def process_yaml(yaml_file):
   with open(yaml_file, 'r') as stream:
     try:
@@ -70,15 +69,16 @@ teams = get_teams(data)
 for team in teams:
   target = team
   command_to_create_target = create_target_command(target)
-  print(command_to_create_target) # REMOVE THIS LINE
+  print("Command to Create Target: " + command_to_create_target) # REMOVE THIS LINE
   #os.system(command_to_create_target)
   command_to_create_team = create_team_command(target)
-  print(command_to_create_team) # REMOVE THIS LINE
+  print("Command to Create Team: " + command_to_create_team)
   # os.system(command_to_create_team)
   for repository in get_repositories_from_team(data,team):
     path = team + "-" + repository['pipeline_name']
+    print("     Cloning Repository: " + repository['url'])
     # Repo.clone_from(repository['url'], path)
     command_to_set_pipeline = create_set_pipeline_command(target, repository['pipeline_name'], repository['pipeline_config_path'], repository['pipeline_vars_path'])
-    print("     " + command_to_set_pipeline) # REMOVE THIS LINE
+    print("     Command to Set Pipeline: " + command_to_set_pipeline) # REMOVE THIS LINE
     # os.system(command)
     # os.system("rm -rf " + path)
