@@ -80,7 +80,7 @@ for team in teams:
   print("Creating Team: " + team)
   command_create_team = create_team_command(target, team)
   print(command_create_team)
-  os.system(create_team_command)
+  os.system(command_create_team)
   
   print("Fly Targets")
   os.system("fly targets")
