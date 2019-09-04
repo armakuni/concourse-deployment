@@ -1,8 +1,8 @@
 #!/bin/sh
 
 # Installing git and wget
-apt-get update
-apt-get install -y git wget
+apt-get update -qq
+apt-get install -qq -y git wget
 
 # Getting fly tool
 wget -O fly "$CONCOURSE_URL/api/v1/cli?arch=amd64&platform=linux"
