@@ -2,7 +2,7 @@
 
 ## Deploy Concourse
 
-More information inside deployment folder.
+To deploy concourse follow READMEs inside `deployment` folder.
 
 ## Setup Pipeline Creator for the first time.
 
