@@ -3,7 +3,6 @@
 import yaml
 import os
 from git.repo.base import Repo
-import shared
 
 
 BASE_CI_PATH = "ci/create-teams-pipelines/"
@@ -66,8 +65,8 @@ def create_set_pipeline_command(target, pipeline_name, pipeline_config_path, pip
   return command
 
 
-data = shared.process_yaml(REPOSITORIES_LIST_FILE)
-teams = shared.get_teams(data)
+data = process_yaml(REPOSITORIES_LIST_FILE)
+teams = get_teams(data)
 for team in teams:
   target = team
   command_to_create_target = create_target_command(target)
@@ -76,7 +75,7 @@ for team in teams:
   command_to_create_team = create_team_command(target)
   print(command_to_create_team) # REMOVE THIS LINE
   # os.system(command_to_create_team)
-  for repository in shared.get_repositories_from_team(data,team):
+  for repository in get_repositories_from_team(data,team):
     path = team + "-" + repository['pipeline_name']
     # Repo.clone_from(repository['url'], path)
     command_to_set_pipeline = create_set_pipeline_command(target, repository['pipeline_name'], repository['pipeline_config_path'], repository['pipeline_vars_path'])
