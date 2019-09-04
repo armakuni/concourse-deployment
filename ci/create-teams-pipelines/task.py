@@ -2,9 +2,13 @@
 
 import yaml
 import os
+import sys
 from git.repo.base import Repo
 
 
+CONCOURSE_URL=sys.argv[1]
+CONCOURSE_USERNAME=sys.argv[2]
+CONCOURSE_PASSWORD=sys.argv[3]
 BASE_CI_PATH = "concourse-deployment/ci/create-teams-pipelines/"
 REPOSITORIES_LIST_FILE = BASE_CI_PATH + "repositories_list.yml"
 TEAMS_CONFIG_FILE = BASE_CI_PATH + "teams-config.yml"
@@ -31,15 +35,11 @@ def get_repositories_from_team(metadata, team):
   return metadata[team]
 
 
-def create_target_command(target):
-  concourse_url = 'asd'
-  username = 'asd'
-  password = 'asd'
-
+def create_target_command(target, concourse_url, concourse_username, concourse_password):
   command = "fly login"
   command += " --target " + target
   command += " --concourse-url " + concourse_url
-  command += " --username " + username
+  command += " --username " + concourse_username
   command += " --password " + password
   command += " --team-name " + target
   command += " --insecure"
@@ -64,11 +64,12 @@ def create_set_pipeline_command(target, pipeline_name, pipeline_config_path, pip
   return command
 
 
+
 data = process_yaml(REPOSITORIES_LIST_FILE)
 teams = get_teams(data)
 for team in teams:
   target = team
-  command_to_create_target = create_target_command(target)
+  command_to_create_target = create_target_command(target, CONCOURSE_URL, CONCOURSE_USERNAME, CONCOURSE_PASSWORD)
   print("Command to Create Target: " + command_to_create_target) # REMOVE THIS LINE
   #os.system(command_to_create_target)
   command_to_create_team = create_team_command(target)
