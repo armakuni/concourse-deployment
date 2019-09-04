@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# Installing Git
+apt-get update
+apt-get install -y git
+
 # Install Python dependencies
 pip install -r concourse-deployment/ci/create-teams-pipelines/requirements.txt
 
