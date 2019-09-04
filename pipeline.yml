@@ -7,16 +7,14 @@ resources:
       branch: master
       private_key: {{git-private-key}}
 jobs:
-  - name: create-teams
+  - name: create-teams-pipelines
     plan:
       - get: concourse-deployment
         trigger: true
-      - task: teams-creation
-        file: concourse-deployment/ci/create-teams/task.yml
-  - name: create-pipelines
-    plan:
-      - get: concourse-deployment
-        trigger: true
-      - task: pipelines-creation
-        file: concourse-deployment/ci/create-pipelines/task.yml
-
+      - task: teams-pipelines-creation
+        file: concourse-deployment/ci/create-teams-pipelines/task.yml
+        params:
+          CONCOURSE_URL: {{concourse_url}}
+          CONCOURSE_USERNAME: {{concourse-username}}
+          CONCOURSE_PASSWORD: {{concourse-password}}
+          GIT_PRIVATE_KEY: {{git-private-key}} 

@@ -1,103 +1,103 @@
 ---
 - ak-learning:
     repositories:
-      - url: https://bitbucket.org/armakuni/ak-learning
+      - url: git@bitbucket.org:armakuni/ak-learning.git
         pipeline_name: ak-learning
         pipeline_config_path: ci/pipeline.yml
         pipeline_vars_path: []
-      - url: https://bitbucket.org/armakuni/ak-toolbox
+      - url: git@bitbucket.org:armakuni/ak-toolbox.git
         pipeline_name: ak-toolbox
         pipeline_config_path: ci/pipeline.yml
         pipeline_vars_path: []
-      - url: https://bitbucket.org/armakuni/k8sappdeploy
+      - url: git@bitbucket.org:armakuni/k8sappdeploy.git
         pipeline_name: k8sappdeploy
         pipeline_config_path: ci/pipeline.yml
         pipeline_vars_path: [ ci/secrets/params.yml ]
-      - url: https://bitbucket.org/armakuni/raindrops-le
+      - url: git@bitbucket.org:armakuni/raindrops-le.git
         pipeline_name: raindrops-le
         pipeline_config_path: ci/pipeline.yaml
         pipeline_vars_path: [ secrets/pipeline_secrets.yaml ]
-      - url: https://bitbucket.org/armakuni/savage-bot
+      - url: git@bitbucket.org:armakuni/savage-bot.git
         pipeline_name: savage-bot
         pipeline_config_path: ci/pipeline.yml
         pipeline_vars_path: [ secrets/concourse.yml ]
-      - url: https://bitbucket.org/armakuni/dazforms
+      - url: git@bitbucket.org:armakuni/dazforms.git
         pipeline_name: dazforms
         pipeline_config_path: ci/pipeline.yml
         pipeline_vars_path: [ private/secrets.yml ]
-      - url: https://github.com/armakuni/fizzbuzzfeed
+      - url: git@github.com:armakuni/fizzbuzzfeed.git
         pipeline_name: as-fizzbuzzfeed
         pipeline_config_path: pipeline.yml
         pipeline_vars_path: [ private/pipeline-secrets.yml ]
-      - url: https://github.com/armakuni/buzzfizzfeed
+      - url: git@github.com:armakuni/buzzfizzfeed.git
         pipeline_name: as-buzzfizzfeed
         pipeline_config_path: pipeline.yml
         pipeline_vars_path: [ private/pipeline-secrets.yml ]
 - ak-software-learning:
     repositories:
-      - url: https://bitbucket.org/armakuni/adoption-pack-generator
+      - url: git@bitbucket.org:armakuni/adoption-pack-generator.git
         pipeline_name: ak-adoption-training-presentation-generate
         pipeline_config_path: ci/pipeline.yml
         pipeline_vars_path: []
-      - url: https://bitbucket.org/armakuni/tech-radar-alerter
+      - url: git@bitbucket.org:armakuni/tech-radar-alerter.git
         pipeline_name: ak-tech-radar-alerter
         pipeline_config_path: $REPO/ci/pipeline.yml
         pipeline_vars_path: [ ci/config.yml, ci/config_keys.yml ]
 - ak-stats:
     repositories:
-      - url: https://bitbucket.org/armakuni/ak-stats
+      - url: git@bitbucket.org:armakuni/ak-stats.git
         pipeline_name: ak-stats
         pipeline_config_path: ci/pipeline.yml
         pipeline_vars_path: [ private/pipeline-secrets.yml ]
 - engagement-csv:
     repositories:
-      - url: https://bitbucket.org/armakuni/engagementcsv
+      - url: git@bitbucket.org:armakuni/engagementcsv.git
         pipeline_name: engagement-csv
         pipeline_config_path: pipeline.yml
         pipeline_vars_path: [ private/pipeline-secrets.yml ]
 - ocr-postits:
     repositories:
-      - url: https://bitbucket.org/armakuni/ocr-postits
+      - url: git@bitbucket.org:armakuni/ocr-postits.git
         pipeline_name: ocr-postits
         pipeline_config_path: pipeline.yml
         pipeline_vars_path: [ private/secrets.yml, private/vision_state.yml ]
 - ons-k8s-sandbox:
     repositories:
-      - url: https://bitbucket.org/armakuni/ons-k8s-sandbox
+      - url: git@bitbucket.org:armakuni/ons-k8s-sandbox.git
         pipeline_name: infrastructure
         pipeline_config_path: ci/pipeline.yml
         pipeline_vars_path: [ secrets/credentials.yml ]
-      - url: https://bitbucket.org/armakuni/ons-k8s-sandbox
+      - url: git@bitbucket.org:armakuni/ons-k8s-sandbox.git
         pipeline_name: infrastructure-destroy
         pipeline_config_path: ci/pipeline.destroy.yml
         pipeline_vars_path: [ secrets/credentials.yml ]
 - the-way:
     repositories:
-      - url: https://bitbucket.org/armakuni/ak-way-v2
+      - url: git@bitbucket.org:armakuni/ak-way-v2.git
         pipeline_name: the-way
         pipeline_config_path: pipeline.yml
         pipeline_vars_path: [ secrets/pipeline-secrets.yml ]
 - radar:
     repositories:
-      - url: https://bitbucket.org/armakuni/build-your-own-radar
+      - url: git@bitbucket.org:armakuni/build-your-own-radar.git
         pipeline_name: radar
         pipeline_config_path: pipeline.yml
         pipeline_vars_path: [ secrets/pipeline-secrets.yml ]
 - vsm:
     repositories: 
-      - url: https://bitbucket.org/armakuni/value-stream-mapping-ui
+      - url: git@bitbucket.org:armakuni/value-stream-mapping-ui.git
         pipeline_name: vsm
         pipeline_config_path: ci/pipeline.yml
         pipeline_vars_path: [ private/secrets.yml ]
 - rbs-devops-capability:
     repositories:
-      - url: https://bitbucket.org/armakuni/devops_techtree_prettifier
+      - url: git@bitbucket.org:armakuni/devops_techtree_prettifier.git
         pipeline_name: rbs-devops-capability
         pipeline_config_path: ci/pipeline.yaml
         pipeline_vars_path: [ secrets/credentials.yaml ]
 - main:
     repositories:
-      - url: https://bitbucket.org/armakuni/cubinote-webhook
+      - url: git@bitbucket.org:armakuni/cubinote-webhook.git
         pipeline_name: ak-cubinote-webhook
         pipeline_config_path: ci/pipeline.yml
         pipeline_vars_path: [ private/secrets.yml ]
