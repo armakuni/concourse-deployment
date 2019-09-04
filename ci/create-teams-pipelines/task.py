@@ -71,6 +71,7 @@ for team in teams:
   target = team
   os.system(create_target_command(target, team, CONCOURSE_URL, CONCOURSE_USERNAME, CONCOURSE_PASSWORD))
   os.system(create_team_command(target))
+  os.system("fly targets")
   for repository in get_repositories_from_team(data, team):
     path = team + "-" + repository['pipeline_name']
     print("     Cloning Repository: " + repository['url'])
