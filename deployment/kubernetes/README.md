@@ -1,8 +1,4 @@
-# Deploy Concourse on AWS EKS
-
-
-
-
+# Concourse Deployment on Kubernetes 
 
 ## Configure Helm
 
