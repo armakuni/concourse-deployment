@@ -37,6 +37,7 @@ def get_repositories_from_team(metadata, team):
 
 def create_target_command(target, team, concourse_url, concourse_username, concourse_password):
   command = "fly login"
+  command += " --verbose"
   command += " --target " + target
   command += " --concourse-url " + concourse_url
   command += " --username " + concourse_username
@@ -46,16 +47,18 @@ def create_target_command(target, team, concourse_url, concourse_username, conco
   return command
 
 
-def create_team_command(target):
+def create_team_command(target, team):
   command = "fly set-team --non-interactive "
+  command += " --verbose"
   command += "--target " + target
-  command += " --team-name " + target
+  command += " --team-name " + team
   command += " --config " + TEAMS_CONFIG_FILE
   return command
 
 
 def create_set_pipeline_command(target, pipeline_name, pipeline_config_path, pipeline_vars_paths):
   command = "fly set-pipeline"
+  command += " --verbose"
   command += "--target " + target
   command += " --pipeline " + pipeline_name
   command += " --config " + pipeline_config_path
@@ -69,8 +72,10 @@ data = process_yaml(REPOSITORIES_LIST_FILE)
 teams = get_teams(data)
 for team in teams:
   target = team
+  print("Creating Target: " + target)
   os.system(create_target_command(target, team, CONCOURSE_URL, CONCOURSE_USERNAME, CONCOURSE_PASSWORD))
-  os.system(create_team_command(target))
+  print("Creating Team: " + team)
+  os.system(create_team_command(target, team))
   os.system("fly targets")
   for repository in get_repositories_from_team(data, team):
     path = team + "-" + repository['pipeline_name']
