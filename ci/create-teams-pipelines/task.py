@@ -48,6 +48,7 @@ def create_target(target, concourse_url, concourse_username, concourse_password,
   command += " --password " + concourse_password
   if (team != None):
     command += " --team-name " + team
+  print(command)
   os.system(command)
 
 
