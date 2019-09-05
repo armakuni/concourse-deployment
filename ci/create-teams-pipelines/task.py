@@ -100,18 +100,21 @@ teams = get_teams(data)
 for team in teams:
   target = team
 
-  target_created = create_target(target, team, CONCOURSE_URL, CONCOURSE_USERNAME, CONCOURSE_PASSWORD)
+  # target_created = create_target(target, team, CONCOURSE_URL, CONCOURSE_USERNAME, CONCOURSE_PASSWORD)
   
-  team_created = create_team(target, team)
+  # team_created = create_team(target, team)
   
-  print("Fly Targets")
-
-
+  print("Test command using Subprocess")
   test_command = []
   test_command.append("ls")
   test_command.append("-l")
   subprocess.check_output(print_targets)
 
+  print("Test command using os.system")
+  test_command2 = "ls -l"
+  os.system(test_command2)
+
+  print("Fly Targets")
   print_targets = []
   print_targets.append("fly")
   print_targets.append("targets")
