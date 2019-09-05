@@ -37,14 +37,25 @@ def get_repositories_from_team(metadata, team):
 
 
 def create_target_command(target, team, concourse_url, concourse_username, concourse_password):
-  command = "fly login"
-  command += " --verbose"
-  command += " --insecure"
-  command += " --target " + target
-  command += " --concourse-url " + concourse_url
-  command += " --username " + concourse_username
-  command += " --password " + concourse_password
-  command += " --team-name " + team
+  # command = "fly login"
+  # command += " --verbose"
+  # command += " --insecure"
+  # command += " --target " + target
+  # command += " --concourse-url " + concourse_url
+  # command += " --username " + concourse_username
+  # command += " --password " + concourse_password
+  # command += " --team-name " + team
+  # return command
+
+  command = []
+  command.append("fly login")
+  command.append("--verbose")
+  command.append("--insecure")
+  command.append("--target " + target)
+  command.append("--concourse-url " + concourse_url)
+  command.append("--username " + concourse_username)
+  command.append("--password " + concourse_password)
+  command.append("--team-name " + team)
   return command
 
 
@@ -77,7 +88,7 @@ for team in teams:
   print("Creating Target: " + target)
   command_create_target = create_target_command(target, team, CONCOURSE_URL, CONCOURSE_USERNAME, CONCOURSE_PASSWORD)
   print(command_create_target)
-  os.system(command_create_target)
+  # os.system(command_create_target)
   subprocess.call(command_create_target)
 
   print("Creating Team: " + team)
