@@ -39,30 +39,27 @@ def get_repositories_from_team(metadata, team):
 def create_target(target, team, concourse_url, concourse_username, concourse_password):
   print("Creating Target: " + target)
 
-  # command = "fly login"
-  # command += " --verbose"
-  # command += " --insecure"
-  # command += " --target " + target
-  # command += " --concourse-url " + concourse_url
-  # command += " --username " + concourse_username
-  # command += " --password " + concourse_password
-  # command += " --team-name " + team
-  # return command
-
-  command = []
-  command.append("/usr/local/bin/fly")
-  command.append("login")
-  command.append("--verbose")
-  command.append("--insecure")
-  command.append("--target=" + target)
-  command.append("--concourse-url=" + concourse_url)
-  command.append("--username=" + concourse_username)
-  command.append("--password=" + concourse_password)
-  command.append("--team-name=" + team)
+  command = "fly login"
+  command += " --verbose"
+  command += " --insecure"
+  command += " --target " + target
+  command += " --concourse-url " + concourse_url
+  command += " --username " + concourse_username
+  command += " --password " + concourse_password
+  command += " --team-name " + team
+  os.system(command)
   
-  print(command)
-  # os.system(command)
-  subprocess.check_output(command)
+  # command = []
+  # command.append("/usr/local/bin/fly")
+  # command.append("login")
+  # command.append("--verbose")
+  # command.append("--insecure")
+  # command.append("--target=" + target)
+  # command.append("--concourse-url=" + concourse_url)
+  # command.append("--username=" + concourse_username)
+  # command.append("--password=" + concourse_password)
+  # command.append("--team-name=" + team)
+  # subprocess.check_output(command)
 
 
 def create_team(target, team):
@@ -100,7 +97,7 @@ teams = get_teams(data)
 for team in teams:
   target = team
 
-  # target_created = create_target(target, team, CONCOURSE_URL, CONCOURSE_USERNAME, CONCOURSE_PASSWORD)
+  target_created = create_target(target, team, CONCOURSE_URL, CONCOURSE_USERNAME, CONCOURSE_PASSWORD)
   
   # team_created = create_team(target, team)
   
