@@ -106,6 +106,12 @@ for team in teams:
   
   print("Fly Targets")
 
+
+  test_command = []
+  test_command.append("ls")
+  test_command.append("-l")
+  subprocess.check_output(print_targets)
+
   print_targets = []
   print_targets.append("fly")
   print_targets.append("targets")
