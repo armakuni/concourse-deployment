@@ -48,14 +48,15 @@ def create_target_command(target, team, concourse_url, concourse_username, conco
   # return command
 
   command = []
-  command.append("fly login")
+  command.append("fly")
+  command.append("login")
   command.append("--verbose")
   command.append("--insecure")
-  command.append("--target " + target)
-  command.append("--concourse-url " + concourse_url)
-  command.append("--username " + concourse_username)
-  command.append("--password " + concourse_password)
-  command.append("--team-name " + team)
+  command.append("--target=" + target)
+  command.append("--concourse-url=" + concourse_url)
+  command.append("--username=" + concourse_username)
+  command.append("--password=" + concourse_password)
+  command.append("--team-name=" + team)
   return command
 
 
