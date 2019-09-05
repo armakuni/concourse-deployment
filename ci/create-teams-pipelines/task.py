@@ -38,7 +38,6 @@ def get_repositories_from_team(metadata, team):
 
 def create_target(target, team, concourse_url, concourse_username, concourse_password):
   print("Creating Target: " + target)
-
   command = "fly login"
   command += " --verbose"
   command += " --insecure"
@@ -48,31 +47,22 @@ def create_target(target, team, concourse_url, concourse_username, concourse_pas
   command += " --password " + concourse_password
   command += " --team-name " + team
   os.system(command)
-  
-  # command = []
-  # command.append("/usr/local/bin/fly")
-  # command.append("login")
-  # command.append("--verbose")
-  # command.append("--insecure")
-  # command.append("--target=" + target)
-  # command.append("--concourse-url=" + concourse_url)
-  # command.append("--username=" + concourse_username)
-  # command.append("--password=" + concourse_password)
-  # command.append("--team-name=" + team)
-  # subprocess.check_output(command)
 
 
 def create_team(target, team):
   print("Creating Team: " + team)
-
   command = "fly set-team"
   command += " --verbose "
   command += " --non-interactive"
   command += " --target " + target
   command += " --team-name " + team
   command += " --config " + TEAMS_CONFIG_FILE
-
   os.system(command)
+
+
+def print_fly_targets():
+  print("Fly Targets")
+  os.system("fly targets")
 
 
 def set_pipeline(path, target, pipeline_name, pipeline_config_path, pipeline_vars_paths):
@@ -99,26 +89,9 @@ for team in teams:
 
   target_created = create_target(target, team, CONCOURSE_URL, CONCOURSE_USERNAME, CONCOURSE_PASSWORD)
   
-  # team_created = create_team(target, team)
+  team_created = create_team(target, team)
   
-  print("Test command using Subprocess")
-  test_command = []
-  test_command.append("ls")
-  test_command.append("-l")
-  test_command.append("concourse-deployment")
-  result = subprocess.check_output(test_command)
-  print(result)
-
-  print("Test command using os.system")
-  test_command2 = "ls -l concourse-deployment"
-  os.system(test_command2)
-
-  print("Fly Targets")
-  print_targets = []
-  print_targets.append("fly")
-  print_targets.append("targets")
-  subprocess.check_output(print_targets)
-  # os.system("fly targets")
+  print_fly_targets()
   
   for repository in get_repositories_from_team(data, team):
     path = team + "-" + repository['pipeline_name']
