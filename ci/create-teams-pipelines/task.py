@@ -108,10 +108,11 @@ for team in teams:
   test_command = []
   test_command.append("ls")
   test_command.append("-l")
+  test_command.append("concourse-deployment")
   subprocess.check_output(test_command)
 
   print("Test command using os.system")
-  test_command2 = "ls -l"
+  test_command2 = "ls -l concourse-deployment"
   os.system(test_command2)
 
   print("Fly Targets")
