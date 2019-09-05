@@ -11,8 +11,7 @@ CONCOURSE_URL=sys.argv[1]
 CONCOURSE_USERNAME=sys.argv[2]
 CONCOURSE_PASSWORD=sys.argv[3]
 MAIN_CONCOURSE_TARGET = "ak-concourse-deployment"
-BASE_CI_PATH = "ci/create-teams-pipelines/"
-# BASE_CI_PATH = "concourse-deployment/ci/create-teams-pipelines/"
+BASE_CI_PATH = "concourse-deployment/ci/create-teams-pipelines/"
 REPOSITORIES_LIST_FILE = BASE_CI_PATH + "repositories_list.yml"
 TEAMS_CONFIG_FILE = BASE_CI_PATH + "teams-config.yml"
 
