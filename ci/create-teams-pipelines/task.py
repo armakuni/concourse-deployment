@@ -10,9 +10,12 @@ from git.repo.base import Repo
 CONCOURSE_URL=sys.argv[1]
 CONCOURSE_USERNAME=sys.argv[2]
 CONCOURSE_PASSWORD=sys.argv[3]
-BASE_CI_PATH = "concourse-deployment/ci/create-teams-pipelines/"
+MAIN_CONCOURSE_TARGET = "ak-concourse-deployment"
+BASE_CI_PATH = "ci/create-teams-pipelines/"
+# BASE_CI_PATH = "concourse-deployment/ci/create-teams-pipelines/"
 REPOSITORIES_LIST_FILE = BASE_CI_PATH + "repositories_list.yml"
 TEAMS_CONFIG_FILE = BASE_CI_PATH + "teams-config.yml"
+
 
 
 def process_yaml(yaml_file):
@@ -36,7 +39,7 @@ def get_repositories_from_team(metadata, team):
   return metadata[team]
 
 
-def create_target(target, team, concourse_url, concourse_username, concourse_password):
+def create_target(target, concourse_url, concourse_username, concourse_password, team = None):
   print("Creating Target: " + target)
   command = "fly login"
   command += " --verbose"
@@ -45,7 +48,8 @@ def create_target(target, team, concourse_url, concourse_username, concourse_pas
   command += " --concourse-url " + concourse_url
   command += " --username " + concourse_username
   command += " --password " + concourse_password
-  command += " --team-name " + team
+  if (team != None):
+    command += " --team-name " + team
   os.system(command)
 
 
@@ -58,11 +62,6 @@ def create_team(target, team):
   command += " --team-name " + team
   command += " --config " + TEAMS_CONFIG_FILE
   os.system(command)
-
-
-def print_fly_targets():
-  print("Fly Targets")
-  os.system("fly targets")
 
 
 def set_pipeline(path, target, pipeline_name, pipeline_config_path, pipeline_vars_paths):
@@ -84,18 +83,21 @@ def set_pipeline(path, target, pipeline_name, pipeline_config_path, pipeline_var
 
 data = process_yaml(REPOSITORIES_LIST_FILE)
 teams = get_teams(data)
+
+# Create Main Concourse Target
+main_target_created = create_target(MAIN_CONCOURSE_TARGET, CONCOURSE_URL, CONCOURSE_USERNAME, CONCOURSE_PASSWORD)
 for team in teams:
   target = team
-
-  target_created = create_target(target, team, CONCOURSE_URL, CONCOURSE_USERNAME, CONCOURSE_PASSWORD)
-  
-  team_created = create_team(target, team)
-  
-  print_fly_targets()
-  
+  # Create Team using Main Concourse Target
+  team_created = create_team(MAIN_CONCOURSE_TARGET, team)
+  # Create new Target for the previously create Team
+  target_created = create_target(target, CONCOURSE_URL, CONCOURSE_USERNAME, CONCOURSE_PASSWORD, team)
   for repository in get_repositories_from_team(data, team):
     path = team + "-" + repository['pipeline_name']
     print("     Cloning Repository: " + repository['url'])
     # Repo.clone_from(repository['url'], path)
     pipeline_created = set_pipeline(path, target, repository['pipeline_name'], repository['pipeline_config_path'], repository['pipeline_vars_path'])
     # os.system("rm -rf " + path)
+# Print Fly Targets
+print("Fly Targets")
+os.system("fly targets")
