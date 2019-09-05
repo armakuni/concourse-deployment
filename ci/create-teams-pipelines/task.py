@@ -57,8 +57,8 @@ def create_team(target, team):
   command += " --non-interactive"
   command += " --target " + target
   command += " --team-name " + team
-  # command += " --config " + TEAMS_CONFIG_FILE
-  command += " --local-user " + CONCOURSE_USERNAME
+  command += " --config " + TEAMS_CONFIG_FILE
+  # command += " --local-user " + CONCOURSE_USERNAME
   os.system(command)
 
 
