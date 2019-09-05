@@ -109,7 +109,8 @@ for team in teams:
   test_command.append("ls")
   test_command.append("-l")
   test_command.append("concourse-deployment")
-  subprocess.check_output(test_command)
+  result = subprocess.check_output(test_command)
+  print(result)
 
   print("Test command using os.system")
   test_command2 = "ls -l concourse-deployment"
