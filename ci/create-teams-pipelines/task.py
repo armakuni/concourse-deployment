@@ -16,7 +16,6 @@ REPOSITORIES_LIST_FILE = BASE_CI_PATH + "repositories_list.yml"
 TEAMS_CONFIG_FILE = BASE_CI_PATH + "teams-config.yml"
 
 
-
 def process_yaml(yaml_file):
   with open(yaml_file, 'r') as stream:
     try:
@@ -85,6 +84,11 @@ teams = get_teams(data)
 
 # Create Main Concourse Target
 main_target_created = create_target(MAIN_CONCOURSE_TARGET, CONCOURSE_URL, CONCOURSE_USERNAME, CONCOURSE_PASSWORD)
+# Print Fly Targets
+print("Fly Targets")
+os.system("fly targets")
+
+
 for team in teams:
   target = team
   # Create Team using Main Concourse Target
