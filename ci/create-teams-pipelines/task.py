@@ -48,7 +48,7 @@ def create_target_command(target, team, concourse_url, concourse_username, conco
   # return command
 
   command = []
-  command.append("fly")
+  command.append("/usr/local/bin/fly")
   command.append("login")
   command.append("--verbose")
   command.append("--insecure")
