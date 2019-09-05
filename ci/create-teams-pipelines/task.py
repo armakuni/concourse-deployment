@@ -40,7 +40,6 @@ def get_repositories_from_team(metadata, team):
 def create_target(target, concourse_url, concourse_username, concourse_password, team = None):
   print("Creating Target: " + target)
   command = "fly login"
-  command += " --verbose"
   command += " --insecure"
   command += " --target " + target
   command += " --concourse-url " + concourse_url
@@ -55,7 +54,6 @@ def create_target(target, concourse_url, concourse_username, concourse_password,
 def create_team(target, team):
   print("Creating Team: " + team)
   command = "fly set-team"
-  command += " --verbose "
   command += " --non-interactive"
   command += " --target " + target
   command += " --team-name " + team
@@ -69,7 +67,6 @@ def set_pipeline(path, target, pipeline_name, pipeline_config_path, pipeline_var
   # os.chdir(path) 
   
   command = "fly set-pipeline"
-  command += " --verbose"
   command += " --target " + target
   command += " --pipeline " + pipeline_name
   command += " --config " + pipeline_config_path
