@@ -108,7 +108,7 @@ for team in teams:
   test_command = []
   test_command.append("ls")
   test_command.append("-l")
-  subprocess.check_output(print_targets)
+  subprocess.check_output(test_command)
 
   print("Test command using os.system")
   test_command2 = "ls -l"
@@ -118,9 +118,8 @@ for team in teams:
   print_targets = []
   print_targets.append("fly")
   print_targets.append("targets")
-  # os.system("fly targets")
   subprocess.check_output(print_targets)
-
+  # os.system("fly targets")
   
   for repository in get_repositories_from_team(data, team):
     path = team + "-" + repository['pipeline_name']
