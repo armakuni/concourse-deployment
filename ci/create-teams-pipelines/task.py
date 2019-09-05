@@ -78,7 +78,7 @@ for team in teams:
   command_create_target = create_target_command(target, team, CONCOURSE_URL, CONCOURSE_USERNAME, CONCOURSE_PASSWORD)
   print(command_create_target)
   os.system(command_create_target)
-  subprocess.call([command_create_target])
+  subprocess.call(command_create_target)
 
   print("Creating Team: " + team)
   command_create_team = create_team_command(target, team)
