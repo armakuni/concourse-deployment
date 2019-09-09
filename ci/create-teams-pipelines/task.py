@@ -92,7 +92,7 @@ os.system("fly targets")
 for team in teams:
   target = team
   # Create Team using Main Concourse Target
-  team_created = create_team(MAIN_CONCOURSE_TARGET, team)
+  team_created = create_team(MAIN_CONCOURSE_TARGET, team, CONCOURSE_USERNAME)
   # Create new Target for the previously create Team
   target_created = create_target(target, CONCOURSE_URL, CONCOURSE_USERNAME, CONCOURSE_PASSWORD, team)
   for repository in get_repositories_from_team(data, team):
