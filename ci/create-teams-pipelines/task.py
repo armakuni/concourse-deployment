@@ -75,7 +75,7 @@ def set_pipeline(path, target, pipeline_name, pipeline_config_path, pipeline_var
     command += " --load-vars-from " + vars_path
   
   print("     Command to Set Pipeline: " + command) # REMOVE THIS LINE
-  # os.system(command)
+  os.system(command)
 
 
 data = process_yaml(REPOSITORIES_LIST_FILE)
