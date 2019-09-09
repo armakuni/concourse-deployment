@@ -17,6 +17,7 @@ mkdir ~/.ssh
 
 # Create SSH key file
 echo $GIT_PRIVATE_KEY > ~/.ssh/github_rsa
+tr ' ' '\n' < ~/.ssh/github_rsa
 
 cat >> ~/.ssh/config <<EOL
 Host bitbucket.org
