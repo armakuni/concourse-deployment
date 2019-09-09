@@ -86,6 +86,8 @@ main_target_created = create_target(MAIN_CONCOURSE_TARGET, CONCOURSE_URL, CONCOU
 # Print Fly Targets
 print("Fly Targets")
 os.system("fly targets")
+os.system("mkdir ~/.ssh")
+os.system("touch ~/.ssh/known_hosts")
 os.system("ssh-keyscan github.com >> ~/.ssh/known_hosts")
 os.system("ssh-keyscan bitbucket.org >> ~/.ssh/known_hosts")
 
