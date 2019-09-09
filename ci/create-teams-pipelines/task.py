@@ -70,7 +70,7 @@ def set_pipeline(path, target, pipeline_name, pipeline_config_path, pipeline_var
   command = "fly set-pipeline"
   command += " --target " + target
   command += " --pipeline " + pipeline_name
-  command += " --config " + pipeline_name + '/' + pipeline_config_path
+  command += " --config " + path + '/' + pipeline_config_path
   for vars_path in pipeline_vars_paths:
     command += " --load-vars-from " + vars_path
   
