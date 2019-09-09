@@ -16,7 +16,8 @@ pip install -r concourse-deployment/ci/create-teams-pipelines/requirements.txt
 mkdir ~/.ssh
 
 # Create SSH key file
-echo $GIT_PRIVATE_KEY > ~/.ssh/github_rsa
+echo "$GIT_PRIVATE_KEY" > ~/.ssh/github_rsa
+sed 's/(?!-----.*-----) /\n/g' example.
 cat >> ~/.ssh/config <<EOL
 Host bitbucket.org
  IdentityFile ~/.ssh/github_rsa
