@@ -28,7 +28,7 @@ EOL
 
 chmod 600 ~/.ssh/github_rsa
 eval "$(ssh-agent -s)"
-ssh-add -v ~/.ssh/github_rsa
+ssh-add ~/.ssh/github_rsa
 
 
 # Run Python script
