@@ -86,6 +86,8 @@ main_target_created = create_target(MAIN_CONCOURSE_TARGET, CONCOURSE_URL, CONCOU
 # Print Fly Targets
 print("Fly Targets")
 os.system("fly targets")
+os.system("ssh-keyscan github.com >> ~/.ssh/known_hosts")
+os.system("ssh-keyscan bitbucket.org >> ~/.ssh/known_hosts")
 
 
 for team in teams:
@@ -97,7 +99,7 @@ for team in teams:
   for repository in get_repositories_from_team(data, team):
     path = team + "-" + repository['pipeline_name']
     print("     Cloning Repository: " + repository['url'])
-    Repo.clone_from('https://' + repository['url'], path)
+    Repo.clone_from(repository['url'], path)
     pipeline_created = set_pipeline(path, target, repository['pipeline_name'], repository['pipeline_config_path'], repository['pipeline_vars_path'])
     # os.system("rm -rf " + path)
 # Print Fly Targets
