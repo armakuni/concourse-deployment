@@ -16,10 +16,11 @@ pip install -r concourse-deployment/ci/create-teams-pipelines/requirements.txt
 mkdir ~/.ssh
 
 # Create SSH key file
+ldd /usr/bin/ssh-add
 echo $GIT_PRIVATE_KEY > ~/.ssh/github_rsa
 chmod 600 ~/.ssh/github_rsa
 eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/github_rsa
+ssh-add -v ~/.ssh/github_rsa
 
 
 # Run Python script
