@@ -17,4 +17,4 @@ jobs:
           CONCOURSE_URL: {{concourse_url}}
           CONCOURSE_USERNAME: {{concourse-username}}
           CONCOURSE_PASSWORD: {{concourse-password}}
-          GIT_PRIVATE_KEY: {{git-private-key}} 
+          GIT_PRIVATE_KEY: {{git-private-key}}
