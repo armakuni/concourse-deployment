@@ -51,14 +51,13 @@ def create_target(target, concourse_url, concourse_username, concourse_password,
   os.system(command)
 
 
-def create_team(target, team, concourse_username):
+def create_team(target, team):
   print("Creating Team: " + team)
   command = "fly set-team"
   command += " --non-interactive"
   command += " --target " + target
   command += " --team-name " + team
   command += " --config " + TEAMS_CONFIG_FILE
-  command += " --local-user " + concourse_username
   # command += " --local-user " + CONCOURSE_USERNAME
   os.system(command)
 
@@ -92,7 +91,7 @@ os.system("fly targets")
 for team in teams:
   target = team
   # Create Team using Main Concourse Target
-  team_created = create_team(MAIN_CONCOURSE_TARGET, team, CONCOURSE_USERNAME)
+  team_created = create_team(MAIN_CONCOURSE_TARGET, team)
   # Create new Target for the previously create Team
   target_created = create_target(target, CONCOURSE_URL, CONCOURSE_USERNAME, CONCOURSE_PASSWORD, team)
   for repository in get_repositories_from_team(data, team):
