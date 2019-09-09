@@ -17,6 +17,7 @@ mkdir ~/.ssh
 
 # Create SSH key file
 echo $GIT_PRIVATE_KEY > ~/.ssh/github_rsa
+ssh-add ~/.ssh/github_rsa
 
 # Run Python script
 python concourse-deployment/ci/create-teams-pipelines/task.py $CONCOURSE_URL $CONCOURSE_USERNAME $CONCOURSE_PASSWORD
