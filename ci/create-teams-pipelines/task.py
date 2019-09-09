@@ -51,13 +51,14 @@ def create_target(target, concourse_url, concourse_username, concourse_password,
   os.system(command)
 
 
-def create_team(target, team):
+def create_team(target, team, concourse_username):
   print("Creating Team: " + team)
   command = "fly set-team"
   command += " --non-interactive"
   command += " --target " + target
   command += " --team-name " + team
   command += " --config " + TEAMS_CONFIG_FILE
+  command += " --local-user " + concourse_username
   # command += " --local-user " + CONCOURSE_USERNAME
   os.system(command)
 
