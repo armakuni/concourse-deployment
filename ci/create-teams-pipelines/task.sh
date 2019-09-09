@@ -13,8 +13,10 @@ echo "Fly Version: $(fly --version)"
 # Install Python dependencies
 pip install -r concourse-deployment/ci/create-teams-pipelines/requirements.txt
 
+mkdir ~/.ssh
+
 # Create SSH key file
-# echo $GIT_PRIVATE_KEY > ~/.ssh/asdkjas
+echo $GIT_PRIVATE_KEY > ~/.ssh/github_rsa
 
 # Run Python script
 python concourse-deployment/ci/create-teams-pipelines/task.py $CONCOURSE_URL $CONCOURSE_USERNAME $CONCOURSE_PASSWORD
