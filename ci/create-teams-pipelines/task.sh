@@ -17,7 +17,7 @@ mkdir ~/.ssh
 
 # Create SSH key file
 echo $GIT_PRIVATE_KEY > ~/.ssh/github_rsa
-sudo chmod 600 ~/.ssh/github_rsa
+chmod 600 ~/.ssh/github_rsa
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/github_rsa
 
