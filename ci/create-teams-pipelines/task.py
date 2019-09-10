@@ -67,7 +67,7 @@ def set_pipeline(path, target, pipeline_name, pipeline_config_path, pipeline_var
   
   # os.chdir(path) 
   
-  command = "fly set-pipeline"
+  command = "fly set-pipeline -n"
   command += " --target " + target
   command += " --pipeline " + pipeline_name
   command += " --config " + path + '/' + pipeline_config_path
