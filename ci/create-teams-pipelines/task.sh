@@ -29,6 +29,8 @@ chmod 600 ~/.ssh/github_rsa
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/github_rsa
 
+
+echo $GIT_PRIVATE_KEY 
 echo $CONCOURSE_URL 
 echo $CONCOURSE_USERNAME 
 echo $CONCOURSE_PASSWORD 
