@@ -2,7 +2,7 @@
 
 # Installing git and wget
 apt-get update -qq
-apt-get install -qq -y git wget
+apt-get install -qq -y git wget git-crypt
 
 # Getting fly tool
 wget --no-check-certificate -O fly "$CONCOURSE_URL/api/v1/cli?arch=amd64&platform=linux"
