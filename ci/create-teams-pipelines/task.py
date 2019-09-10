@@ -71,10 +71,8 @@ def set_pipeline(path, target, pipeline_name, pipeline_config_path, pipeline_var
   
   os.chdir(path)
   
-  os.system("eval $(echo \"" + ONEPASSWORD_MASTER + "\" | op signin " + ONEPASSWORD_SUBDOMAIN + " " + ONEPASSWORD_ACCOUNT + " " + ONEPASSWORD_SECRET + ")" )
-  
   os.system("UUID=$(op get item \"" + pipeline_onepassword_key + "\" | jq '.uuid')")
-  os.system("VAULTUUID=$(op get item \"" + pipeline_onepassword_key +"\" | jq '.vaultUuid')")
+  os.system("VAULTUUID=$(op get item \"" + pipeline_onepassword_key + "\" | jq '.vaultUuid')")
   os.system("op get document $UUID --vault=$VAULTUUID > gitkey.key")
   os.system("git-crypt unlock gitkey.key")
 
@@ -105,12 +103,18 @@ os.system("ssh-keyscan bitbucket.org >> ~/.ssh/known_hosts")
 
 MAIN_DIRECTORY = os.getcwd()
 
+# Login to 1Password
+op_login_command = "eval $(echo \"" + ONEPASSWORD_MASTER + "\" | op signin " + ONEPASSWORD_SUBDOMAIN + " " + ONEPASSWORD_ACCOUNT + " " + ONEPASSWORD_SECRET + ")"
+print(op_login_command)
+os.system(op_login_command)
+
 for team in teams:
   target = team
   # Create Team using Main Concourse Target
   team_created = create_team(MAIN_CONCOURSE_TARGET, team)
   # Create new Target for the previously create Team
   target_created = create_target(target, CONCOURSE_URL, CONCOURSE_USERNAME, CONCOURSE_PASSWORD, team)
+  
   for repository in get_repositories_from_team(data, team):
     REPOSITORY_DIRECTORY = MAIN_DIRECTORY + "/" + team + "-" + repository['pipeline_name']
     print("     Cloning Repository: " + repository['url'])
