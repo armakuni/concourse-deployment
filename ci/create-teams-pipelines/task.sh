@@ -20,9 +20,8 @@ rm -rf op-cli.zip /tmp/op-cli
 # Install Python dependencies
 pip install -r concourse-deployment/ci/create-teams-pipelines/requirements.txt
 
-mkdir ~/.ssh
-
 # Create SSH key file
+mkdir ~/.ssh
 echo "$GIT_PRIVATE_KEY" > ~/.ssh/github_rsa
 cat >> ~/.ssh/config <<EOL
 Host bitbucket.org
@@ -35,16 +34,6 @@ EOL
 chmod 600 ~/.ssh/github_rsa
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/github_rsa
-
-
-echo $GIT_PRIVATE_KEY 
-echo $CONCOURSE_URL 
-echo $CONCOURSE_USERNAME 
-echo $CONCOURSE_PASSWORD 
-echo $ONEPASSWORD_MASTER 
-echo $ONEPASSWORD_SECRET 
-echo $ONEPASSWORD_SUBDOMAIN 
-echo $ONEPASSWORD_ACCOUNT
 
 # Run Python script
 python concourse-deployment/ci/create-teams-pipelines/task.py $CONCOURSE_URL $CONCOURSE_USERNAME $CONCOURSE_PASSWORD $ONEPASSWORD_MASTER $ONEPASSWORD_SECRET $ONEPASSWORD_SUBDOMAIN $ONEPASSWORD_ACCOUNT
