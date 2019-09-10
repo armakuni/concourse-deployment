@@ -51,7 +51,6 @@ def create_target(target, concourse_url, concourse_username, concourse_password,
   command += " --password " + concourse_password
   if (team != None):
     command += " --team-name " + team
-  print(command)
   os.system(command)
 
 
@@ -71,7 +70,11 @@ def set_pipeline(path, target, pipeline_name, pipeline_config_path, pipeline_var
   
   os.chdir(path)
   
-  os.system("UUID=$(op get item \"" + pipeline_onepassword_key + "\" | jq '.uuid')")
+  op_login_command = "eval $(echo \"" + ONEPASSWORD_MASTER + "\" | op signin " + ONEPASSWORD_SUBDOMAIN + " " + ONEPASSWORD_ACCOUNT + " " + ONEPASSWORD_SECRET + ")"
+  print(op_login_command)
+  TOKEN = os.system(op_login_command)
+  print(TOKEN)
+  os.system("UUID=$(op get item \"" + pipeline_onepassword_key + "\" --session=<sessiontoken> | jq '.uuid')")
   os.system("VAULTUUID=$(op get item \"" + pipeline_onepassword_key + "\" | jq '.vaultUuid')")
   os.system("op get document $UUID --vault=$VAULTUUID > gitkey.key")
   os.system("git-crypt unlock gitkey.key")
@@ -102,11 +105,6 @@ os.system("ssh-keyscan bitbucket.org >> ~/.ssh/known_hosts")
 
 
 MAIN_DIRECTORY = os.getcwd()
-
-# Login to 1Password
-op_login_command = "eval $(echo \"" + ONEPASSWORD_MASTER + "\" | op signin " + ONEPASSWORD_SUBDOMAIN + " " + ONEPASSWORD_ACCOUNT + " " + ONEPASSWORD_SECRET + ")"
-print(op_login_command)
-os.system(op_login_command)
 
 for team in teams:
   target = team
