@@ -71,9 +71,9 @@ def set_pipeline(path, target, pipeline_name, pipeline_config_path, pipeline_var
   
   os.chdir(path)
   
-  os.system("eval $(echo " + ONEPASSWORD_MASTER + " | op signin " + ONEPASSWORD_SUBDOMAIN+ " "+ONEPASSWORD_ACCOUNT +" " +ONEPASSWORD_SECRET+")")
+  os.system("eval $(echo \"" + ONEPASSWORD_MASTER + "\" | op signin " + ONEPASSWORD_SUBDOMAIN + " " + ONEPASSWORD_ACCOUNT + " " + ONEPASSWORD_SECRET + ")" )
   
-  os.system("UUID=$(op get item \"" + pipeline_onepassword_key +"\" | jq '.uuid')")
+  os.system("UUID=$(op get item \"" + pipeline_onepassword_key + "\" | jq '.uuid')")
   os.system("VAULTUUID=$(op get item \"" + pipeline_onepassword_key +"\" | jq '.vaultUuid')")
   os.system("op get document $UUID --vault=$VAULTUUID > gitkey.key")
   os.system("git-crypt unlock gitkey.key")
