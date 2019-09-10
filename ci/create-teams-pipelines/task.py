@@ -72,9 +72,9 @@ def set_pipeline(path, target, pipeline_name, pipeline_config_path, pipeline_var
   
   op_login_command = "eval $(echo \"" + ONEPASSWORD_MASTER + "\" | op signin " + ONEPASSWORD_SUBDOMAIN + " " + ONEPASSWORD_ACCOUNT + " " + ONEPASSWORD_SECRET + ")"
   print(op_login_command)
-  TOKEN = os.system(op_login_command)
-  print(TOKEN)
-  os.system("UUID=$(op get item \"" + pipeline_onepassword_key + "\" --session=<sessiontoken> | jq '.uuid')")
+  os.system("TOKEN = $(op_login_command)")
+  print("op session token is : $TOKEN")
+  os.system("UUID=$(op get item \"" + pipeline_onepassword_key + "\" --session=$TOKEN | jq '.uuid')")
   os.system("VAULTUUID=$(op get item \"" + pipeline_onepassword_key + "\" | jq '.vaultUuid')")
   os.system("op get document $UUID --vault=$VAULTUUID > gitkey.key")
   os.system("git-crypt unlock gitkey.key")
