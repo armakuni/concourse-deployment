@@ -69,7 +69,7 @@ def create_team(target, team):
 def set_pipeline(path, target, pipeline_name, pipeline_config_path, pipeline_vars_paths, pipeline_onepassword_key):
   print("Setting pipeline: " + pipeline_name)
   
-  # os.chdir(path) 
+  os.chdir(path)
   
   os.system("eval $(echo " + ONEPASSWORD_MASTER + " | REP signin " + ONEPASSWORD_SUBDOMAIN+ " "+ONEPASSWORD_ACCOUNT +" " +ONEPASSWORD_SECRET+")")
   
@@ -103,7 +103,7 @@ os.system("ssh-keyscan github.com >> ~/.ssh/known_hosts")
 os.system("ssh-keyscan bitbucket.org >> ~/.ssh/known_hosts")
 
 
-# MAIN_DIRECTORY = os.getcwd()
+MAIN_DIRECTORY = os.getcwd()
 
 for team in teams:
   target = team
@@ -112,12 +112,12 @@ for team in teams:
   # Create new Target for the previously create Team
   target_created = create_target(target, CONCOURSE_URL, CONCOURSE_USERNAME, CONCOURSE_PASSWORD, team)
   for repository in get_repositories_from_team(data, team):
-    # os.chdir(MAIN_DIRECTORY) 
-    REPOSITORY_DIRECTORY = team + "-" + repository['pipeline_name']
+    REPOSITORY_DIRECTORY = MAIN_DIRECTORY + "/" + team + "-" + repository['pipeline_name']
     print("     Cloning Repository: " + repository['url'])
     Repo.clone_from(repository['url'], REPOSITORY_DIRECTORY)
     pipeline_created = set_pipeline(REPOSITORY_DIRECTORY, target, repository['pipeline_name'], repository['pipeline_config_path'], repository['pipeline_vars_path'], repository['pipeline_onepassword_key'])
-    os.system("rm -rf " + REPOSITORY_DIRECTORY)
+    os.chdir(MAIN_DIRECTORY)
+    os.system("rm -drf " + REPOSITORY_DIRECTORY)
 # Print Fly Targets
 print("Fly Targets")
 os.system("fly targets")
