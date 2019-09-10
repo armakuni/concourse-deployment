@@ -21,7 +21,7 @@ TEAMS_CONFIG_FILE = BASE_CI_PATH + "teams-config.yml"
 
 
 def process_yaml(yaml_file):
-  with REPen(yaml_file, 'r') as stream:
+  with open(yaml_file, 'r') as stream:
     try:
         data_loaded = yaml.safe_load(stream)
         metadata = {}
