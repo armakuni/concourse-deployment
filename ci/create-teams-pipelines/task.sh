@@ -31,4 +31,4 @@ ssh-add ~/.ssh/github_rsa
 
 
 # Run Python script
-python concourse-deployment/ci/create-teams-pipelines/task.py $CONCOURSE_URL $CONCOURSE_USERNAME $CONCOURSE_PASSWORD
+python concourse-deployment/ci/create-teams-pipelines/task.py $CONCOURSE_URL $CONCOURSE_USERNAME $CONCOURSE_PASSWORD $ONEPASSWORD_MASTER $ONEPASSWORD_SECRET $ONEPASSWORD_SUBDOMAIN $ONEPASSWORD_ACCOUNT

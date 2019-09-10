@@ -10,6 +10,10 @@ from git.repo.base import Repo
 CONCOURSE_URL=sys.argv[1]
 CONCOURSE_USERNAME=sys.argv[2]
 CONCOURSE_PASSWORD=sys.argv[3]
+ONEPASSWORD_MASTER=sys.argv[4]
+ONEPASSWORD_SECRET=sys.argv[5]
+ONEPASSWORD_SUBDOMAIN=sys.argv[6]
+ONEPASSWORD_ACCOUNT=sys.argv[7]
 MAIN_CONCOURSE_TARGET = "ak-concourse-deployment"
 BASE_CI_PATH = "concourse-deployment/ci/create-teams-pipelines/"
 REPOSITORIES_LIST_FILE = BASE_CI_PATH + "repositories_list.yml"
@@ -62,11 +66,18 @@ def create_team(target, team):
   os.system(command)
 
 
-def set_pipeline(path, target, pipeline_name, pipeline_config_path, pipeline_vars_paths):
+def set_pipeline(path, target, pipeline_name, pipeline_config_path, pipeline_vars_paths, pipeline_onepassword_key):
   print("Setting pipeline: " + pipeline_name)
   
   # os.chdir(path) 
   
+  os.system("eval $(echo " + ONEPASSWORD_MASTER + " | op signin " + ONEPASSWORD_SUBDOMAIN+ " "+ONEPASSWORD_ACCOUNT +" " +ONEPASSWORD_SECRET+")")
+  
+  os.system("UUID=$(op get item \"" + pipeline_onepassword_key +"\" | jq '.uuid')")
+  os.system("VAULTUUID=$(op get item \"" + pipeline_onepassword_key +"\" | jq '.vaultUuid')")
+  os.system("op get document $UUID --vault=$VAULTUUID > gitkey.key")
+  os.system("git-crypt unlock gitkey.key")
+
   command = "fly set-pipeline -n"
   command += " --target " + target
   command += " --pipeline " + pipeline_name
@@ -92,6 +103,8 @@ os.system("ssh-keyscan github.com >> ~/.ssh/known_hosts")
 os.system("ssh-keyscan bitbucket.org >> ~/.ssh/known_hosts")
 
 
+
+
 for team in teams:
   target = team
   # Create Team using Main Concourse Target
@@ -102,7 +115,7 @@ for team in teams:
     path = team + "-" + repository['pipeline_name']
     print("     Cloning Repository: " + repository['url'])
     Repo.clone_from(repository['url'], path)
-    pipeline_created = set_pipeline(path, target, repository['pipeline_name'], repository['pipeline_config_path'], repository['pipeline_vars_path'])
+    pipeline_created = set_pipeline(path, target, repository['pipeline_name'], repository['pipeline_config_path'], repository['pipeline_vars_path'], repository['pipeline_onepassword_key'])
     # os.system("rm -rf " + path)
 # Print Fly Targets
 print("Fly Targets")
