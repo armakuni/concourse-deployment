@@ -21,7 +21,7 @@ TEAMS_CONFIG_FILE = BASE_CI_PATH + "teams-config.yml"
 
 
 def process_yaml(yaml_file):
-  with open(yaml_file, 'r') as stream:
+  with REPen(yaml_file, 'r') as stream:
     try:
         data_loaded = yaml.safe_load(stream)
         metadata = {}
@@ -69,13 +69,13 @@ def create_team(target, team):
 def set_pipeline(path, target, pipeline_name, pipeline_config_path, pipeline_vars_paths, pipeline_onepassword_key):
   print("Setting pipeline: " + pipeline_name)
   
-  # os.chdir(path) 
+  os.chdir(path) 
   
-  os.system("eval $(echo " + ONEPASSWORD_MASTER + " | op signin " + ONEPASSWORD_SUBDOMAIN+ " "+ONEPASSWORD_ACCOUNT +" " +ONEPASSWORD_SECRET+")")
+  os.system("eval $(echo " + ONEPASSWORD_MASTER + " | REP signin " + ONEPASSWORD_SUBDOMAIN+ " "+ONEPASSWORD_ACCOUNT +" " +ONEPASSWORD_SECRET+")")
   
-  os.system("UUID=$(op get item \"" + pipeline_onepassword_key +"\" | jq '.uuid')")
-  os.system("VAULTUUID=$(op get item \"" + pipeline_onepassword_key +"\" | jq '.vaultUuid')")
-  os.system("op get document $UUID --vault=$VAULTUUID > gitkey.key")
+  os.system("UUID=$(REP get item \"" + pipeline_onepassword_key +"\" | jq '.uuid')")
+  os.system("VAULTUUID=$(REP get item \"" + pipeline_onepassword_key +"\" | jq '.vaultUuid')")
+  os.system("REP get document $UUID --vault=$VAULTUUID > gitkey.key")
   os.system("git-crypt unlock gitkey.key")
 
   command = "fly set-pipeline -n"
@@ -103,7 +103,7 @@ os.system("ssh-keyscan github.com >> ~/.ssh/known_hosts")
 os.system("ssh-keyscan bitbucket.org >> ~/.ssh/known_hosts")
 
 
-
+MAIN_DIRECTORY = os.getcwd()
 
 for team in teams:
   target = team
@@ -112,11 +112,12 @@ for team in teams:
   # Create new Target for the previously create Team
   target_created = create_target(target, CONCOURSE_URL, CONCOURSE_USERNAME, CONCOURSE_PASSWORD, team)
   for repository in get_repositories_from_team(data, team):
-    path = team + "-" + repository['pipeline_name']
+    os.chdir(MAIN_DIRECTORY) 
+    REPOSITORY_DIRECTORY = MAIN_DIRECTORY + "/" + team + "-" + repository['pipeline_name']
     print("     Cloning Repository: " + repository['url'])
-    Repo.clone_from(repository['url'], path)
-    pipeline_created = set_pipeline(path, target, repository['pipeline_name'], repository['pipeline_config_path'], repository['pipeline_vars_path'], repository['pipeline_onepassword_key'])
-    # os.system("rm -rf " + path)
+    Repo.clone_from(repository['url'], REPOSITORY_DIRECTORY)
+    pipeline_created = set_pipeline(REPOSITORY_DIRECTORY, target, repository['pipeline_name'], repository['pipeline_config_path'], repository['pipeline_vars_path'], repository['pipeline_onepassword_key'])
+    os.system("rm -rf " + REPOSITORY_DIRECTORY)
 # Print Fly Targets
 print("Fly Targets")
 os.system("fly targets")
