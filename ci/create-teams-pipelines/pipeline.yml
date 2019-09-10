@@ -1,0 +1,24 @@
+---
+resources:
+  - name: concourse-deployment
+    type: git
+    source:
+      uri: git@github.com:armakuni/concourse-deployment.git
+      branch: master
+      private_key: {{git-private-key}}
+jobs:
+  - name: create-teams-pipelines
+    plan:
+      - get: concourse-deployment
+        trigger: true
+      - task: teams-pipelines-creation
+        file: concourse-deployment/ci/create-teams-pipelines/task.yml
+        params:
+          CONCOURSE_URL: {{concourse_url}}
+          CONCOURSE_USERNAME: {{concourse-username}}
+          CONCOURSE_PASSWORD: {{concourse-password}}
+          GIT_PRIVATE_KEY: {{git-private-key}}
+          ONEPASSWORD_MASTER:  {{onepassword-master}}
+          ONEPASSWORD_SECRET:  {{onepassword-secret}}
+          ONEPASSWORD_SUBDOMAIN:  {{onepassword-subdomain}}
+          ONEPASSWORD_ACCOUNT:  {{onepassword-account}}
