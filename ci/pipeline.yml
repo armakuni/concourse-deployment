@@ -17,8 +17,8 @@ jobs:
           CONCOURSE_URL: {{concourse_url}}
           CONCOURSE_USERNAME: {{concourse_username}}
           CONCOURSE_PASSWORD: {{concourse_password}}
-          ONEPASSWORD_MASTER:  {{onepassword_master}}
-          ONEPASSWORD_SECRET:  {{onepassword_secret}}
-          ONEPASSWORD_SUBDOMAIN:  {{onepassword_subdomain}}
-          ONEPASSWORD_ACCOUNT:  {{onepassword_account}}
+          ONEPASSWORD_MASTER: {{onepassword_master}}
+          ONEPASSWORD_SECRET: {{onepassword_secret}}
+          ONEPASSWORD_SUBDOMAIN: {{onepassword_subdomain}}
+          ONEPASSWORD_ACCOUNT: {{onepassword_account}}
           GIT_PRIVATE_KEY: {{git_private_key}}
