@@ -2,13 +2,20 @@
 
 # Installing git and wget
 apt-get update -qq
-apt-get install -qq -y git wget git-crypt
+apt-get install -qq -y git wget git-crypt jq unzip
 
 # Getting fly tool
 wget --no-check-certificate -O fly "$CONCOURSE_URL/api/v1/cli?arch=amd64&platform=linux"
 mv fly /usr/local/bin
 chmod +x /usr/local/bin/fly
 echo "Fly Version: $(fly --version)"
+
+# Install 1Password CLI
+wget -O op-cli.zip https://cache.agilebits.com/dist/1P/op/pkg/v0.6.1/op_linux_amd64_v0.6.1.zip
+unzip op-cli.zip -d /tmp/op-cli
+mv /tmp/op-cli/op /usr/local/bin
+chmod +x /usr/local/bin/op
+rm -rf op-cli.zip /tmp/op-cli
 
 # Install Python dependencies
 pip install -r concourse-deployment/ci/create-teams-pipelines/requirements.txt
