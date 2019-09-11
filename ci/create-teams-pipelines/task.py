@@ -85,7 +85,7 @@ def set_pipeline(path, target, pipeline_name, pipeline_config_path, pipeline_var
   print(vaultUiid.decode('ascii'))
   print(Uuid.decode('ascii'))
   
-  os.system("op get document " + Uuid.decode('ascii') + " --vault= " + vaultUiid.decode('ascii') + "  --session=" + OP_SESSION_armakuni + " > gitkey.key")
+  os.system("op get document " + Uuid.decode('ascii') + " --vault=" + vaultUiid.decode('ascii') + "  --session=" + OP_SESSION_armakuni + " > gitkey.key")
   os.system("git-crypt unlock gitkey.key")
 
   command = "fly set-pipeline -n"
@@ -101,10 +101,6 @@ def set_pipeline(path, target, pipeline_name, pipeline_config_path, pipeline_var
 
 data = process_yaml(REPOSITORIES_LIST_FILE)
 teams = get_teams(data)
-
-print("ENV in python")
-os.system("env")
-
 
 # Create Main Concourse Target
 main_target_created = create_target(MAIN_CONCOURSE_TARGET, CONCOURSE_URL, CONCOURSE_USERNAME, CONCOURSE_PASSWORD)
