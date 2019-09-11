@@ -71,8 +71,8 @@ def set_pipeline(path, target, pipeline_name, pipeline_config_path, pipeline_var
   # print(op_login_command)
   # os.system(op_login_command)
   # os.system("echo $OP_SESSION_armakuni")
-  os.system("UUID=$(op get item \"" + pipeline_onepassword_key + "\" --session=$OP_SESSION_armakuni | jq '.uuid')")
-  os.system("VAULTUUID=$(op get item \"" + pipeline_onepassword_key + "\" --session=$OP_SESSION_armakuni | jq '.vaultUuid')")
+  os.system("UUID=$(op get item \"" + pipeline_onepassword_key + "\" --session=" + OP_SESSION_armakuni +" | jq '.uuid')")
+  os.system("VAULTUUID=$(op get item \"" + pipeline_onepassword_key + "\" --session=" + OP_SESSION_armakuni +" | jq '.vaultUuid')")
   os.system("op get document $UUID --vault=$VAULTUUID > gitkey.key")
   os.system("git-crypt unlock gitkey.key")
 
