@@ -73,7 +73,7 @@ def set_pipeline(path, target, pipeline_name, pipeline_config_path, pipeline_var
   # os.system("echo $OP_SESSION_armakuni")
   # os.system("UUID=$(op get item \"" + pipeline_onepassword_key + "\" --session=" + OP_SESSION_armakuni +" | jq '.uuid')")
   # os.system("VAULTUUID=$(op get item \"" + pipeline_onepassword_key + "\" --session=" + OP_SESSION_armakuni +" | jq '.vaultUuid')")
-  UUID=subprocess.check_output(["op", "get", "item",  pipeline_onepassword_key, "--session=OP_SESSION_armakuni",  "|", "jq", ".vaultUuid"])
+  UUID=subprocess.check_output(["op", "get", "item",  pipeline_onepassword_key, "--session={OP_SESSION_armakuni}",  "|", "jq", ".vaultUuid"])
   
   print(UUID)
 
