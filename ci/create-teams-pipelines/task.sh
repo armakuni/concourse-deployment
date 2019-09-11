@@ -35,5 +35,10 @@ chmod 600 ~/.ssh/github_rsa
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/github_rsa
 
+#Login 1password
+
+eval $(echo "$ONEPASSWORD_MASTER" | op signin $ONEPASSWORD_SUBDOMAIN $ONEPASSWORD_ACCOUNT $ONEPASSWORD_SECRET)
+echo $OP_SESSION_armakuni 
+
 # Run Python script
 python concourse-deployment/ci/create-teams-pipelines/task.py $CONCOURSE_URL $CONCOURSE_USERNAME $CONCOURSE_PASSWORD $ONEPASSWORD_MASTER $ONEPASSWORD_SECRET $ONEPASSWORD_SUBDOMAIN $ONEPASSWORD_ACCOUNT
