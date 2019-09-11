@@ -43,8 +43,8 @@ echo $OP_SESSION_armakuni
 
 echo "OP get item -----------------"
 op get item dqsuxuhnmbflbbne4krdkkuqfa --session=$OP_SESSION_armakuni
-UUID="test"
-VAULTUUID="test"
+export UUID="test"
+export VAULTUUID="test"
 
 echo "ENV prior python"
 env
