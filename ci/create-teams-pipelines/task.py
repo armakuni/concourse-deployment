@@ -10,7 +10,7 @@ from git.repo.base import Repo
 CONCOURSE_URL=sys.argv[1]
 CONCOURSE_USERNAME=sys.argv[2]
 CONCOURSE_PASSWORD=sys.argv[3]
-# OP_SESSION_armakuni=sys.argv[4]
+OP_SESSION_armakuni=sys.argv[4]
 MAIN_CONCOURSE_TARGET = "ak-concourse-deployment"
 BASE_CI_PATH = "concourse-deployment/ci/create-teams-pipelines/"
 REPOSITORIES_LIST_FILE = BASE_CI_PATH + "repositories_list.yml"
@@ -73,7 +73,7 @@ def set_pipeline(path, target, pipeline_name, pipeline_config_path, pipeline_var
   # os.system("echo $OP_SESSION_armakuni")
   # os.system("UUID=$(op get item \"" + pipeline_onepassword_key + "\" --session=" + OP_SESSION_armakuni +" | jq '.uuid')")
   # os.system("VAULTUUID=$(op get item \"" + pipeline_onepassword_key + "\" --session=" + OP_SESSION_armakuni +" | jq '.vaultUuid')")
-  UUID=subprocess.check_output(["op", "get", "item",  pipeline_onepassword_key, "--session=${OP_SESSION_armakuni}",  "|", "jq", ".vaultUuid"])
+  UUID=subprocess.check_output(["op", "get", "item",  pipeline_onepassword_key, "--session=" + OP_SESSION_armakuni,  "|", "jq", ".vaultUuid"])
   
   print(UUID)
 
