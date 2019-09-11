@@ -44,8 +44,8 @@ def create_target(target, concourse_url, concourse_username, concourse_password,
   command += " --insecure"
   command += " --target " + target
   command += " --concourse-url " + concourse_url
-  command += " --username " + concourse_username
-  command += " --password " + concourse_password
+  command += " --username '" + concourse_username +"'"
+  command += " --password '" + concourse_password +"'"
   if (team != None):
     command += " --team-name " + team
   os.system(command)
