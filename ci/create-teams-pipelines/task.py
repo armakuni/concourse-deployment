@@ -82,7 +82,7 @@ def set_pipeline(path, target, pipeline_name, pipeline_config_path, pipeline_var
 # os.system("op get document " +  Uuid.decode('ascii') + "  &> gitkey.key")
 
   # Open file
-  fd = os.open("gitkey.key",'w+b')
+  fd = os.open("gitkey.key",'w+')
   fd.write(gkey)
   fd.close()
 
