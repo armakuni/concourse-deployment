@@ -74,7 +74,7 @@ def set_pipeline(path, target, pipeline_name, pipeline_config_path, pipeline_var
   # print(op_login_command)
   # os.system(op_login_command)
   # os.system("echo $OP_SESSION_armakuni")
-  os.system("UUID=$(op get item \"" + pipeline_onepassword_key + "\" --session=$OP_SESSION_armakuni | jq '.uuid')")
+  os.system("UUID=$(op get item \"" + pipeline_onepassword_key + "\" --session= +$OP_SESSION_armakuni | jq '.uuid')")
   os.system("VAULTUUID=$(op get item \"" + pipeline_onepassword_key + "\" --session=$OP_SESSION_armakuni | jq '.vaultUuid')")
   os.system("op get document $UUID --vault=$VAULTUUID > gitkey.key")
   os.system("git-crypt unlock gitkey.key")
@@ -92,6 +92,10 @@ def set_pipeline(path, target, pipeline_name, pipeline_config_path, pipeline_var
 
 data = process_yaml(REPOSITORIES_LIST_FILE)
 teams = get_teams(data)
+
+print("ENV in python")
+os.system("env")
+
 
 # Create Main Concourse Target
 main_target_created = create_target(MAIN_CONCOURSE_TARGET, CONCOURSE_URL, CONCOURSE_USERNAME, CONCOURSE_PASSWORD)
