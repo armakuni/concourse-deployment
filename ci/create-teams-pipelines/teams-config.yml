@@ -1,7 +1,7 @@
 roles:
 - name: owner
   local:
-    users: ["test"]
+    users: ["akadmin"]
 - name: member
   github:
     teams: ["armakuni:concourse-ak-software"]
