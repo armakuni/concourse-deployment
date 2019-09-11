@@ -84,13 +84,8 @@ def set_pipeline(path, target, pipeline_name, pipeline_config_path, pipeline_var
   
   print(vaultUiid.decode('ascii'))
   print(Uuid.decode('ascii'))
-
-  os.system("UUID=test1")#$(op get item \"" + pipeline_onepassword_key + "\" --session=$OP_SESSION_armakuni | jq '.uuid')")
-  os.system("VAULTUUID=test2")#$(op get item \"" + pipeline_onepassword_key + "\" --session=$OP_SESSION_armakuni | jq '.vaultUuid')")
-  os.system("echo $UUID")
-  os.system("echo $VAULTUUID")
-  os.system("echo $OP_SESSION_armakuni")
-  os.system("op get document $UUID --vault=$VAULTUUID --session=$OP_SESSION_armakuni > gitkey.key")
+  
+  os.system("op get document " + Uuid.decode('ascii') + " --vault= " + vaultUiid.decode('ascii') + "  --session=" + OP_SESSION_armakuni + " > gitkey.key")
   os.system("git-crypt unlock gitkey.key")
 
   command = "fly set-pipeline -n"
