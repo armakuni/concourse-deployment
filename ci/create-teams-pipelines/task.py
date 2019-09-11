@@ -74,18 +74,18 @@ def set_pipeline(path, target, pipeline_name, pipeline_config_path, pipeline_var
   # os.system("UUID=$(op get item \"" + pipeline_onepassword_key + "\" --session=" + OP_SESSION_armakuni +" | jq '.uuid')")
   # os.system("VAULTUUID=$(op get item \"" + pipeline_onepassword_key + "\" --session=" + OP_SESSION_armakuni +" | jq '.vaultUuid')")
   
-  ps = subprocess.Popen(("op", "get", "item",  pipeline_onepassword_key, "--session=" + OP_SESSION_armakuni), stdout=subprocess.PIPE)
-  vaultUiid = subprocess.check_output(("jq", ".vaultUuid"), stdin=ps.stdout)
-  ps.wait()
+  # ps = subprocess.Popen(("op", "get", "item",  pipeline_onepassword_key, "--session=" + OP_SESSION_armakuni), stdout=subprocess.PIPE)
+  # vaultUiid = subprocess.check_output(("jq", ".vaultUuid"), stdin=ps.stdout)
+  # ps.wait()
 
   ps = subprocess.Popen(("op", "get", "item",  pipeline_onepassword_key, "--session=" + OP_SESSION_armakuni), stdout=subprocess.PIPE)
   Uuid = subprocess.check_output(("jq", ".uuid"), stdin=ps.stdout)
   ps.wait()
   
-  print(vaultUiid.decode('ascii'))
+  #print(vaultUiid.decode('ascii'))
   print(Uuid.decode('ascii'))
   
-  os.system("op get document " + Uuid.decode('ascii') + " --vault=" + vaultUiid.decode('ascii') + "  --session=" + OP_SESSION_armakuni + " > gitkey.key")
+  os.system("op get document " + Uuid.decode('ascii') + "  > gitkey.key")
   os.system("git-crypt unlock gitkey.key")
 
   command = "fly set-pipeline -n"

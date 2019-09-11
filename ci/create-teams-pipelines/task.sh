@@ -39,7 +39,5 @@ ssh-add ~/.ssh/github_rsa
 
 eval $(echo "$ONEPASSWORD_MASTER" | op signin $ONEPASSWORD_SUBDOMAIN $ONEPASSWORD_ACCOUNT $ONEPASSWORD_SECRET)
 
-op get item dqsuxuhnmbflbbne4krdkkuqfa --session=$OP_SESSION_armakuni
-
 # Run Python script
 python concourse-deployment/ci/create-teams-pipelines/task.py $CONCOURSE_URL $CONCOURSE_USERNAME $CONCOURSE_PASSWORD $OP_SESSION_armakuni
