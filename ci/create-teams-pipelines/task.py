@@ -69,12 +69,13 @@ def set_pipeline(path, target, pipeline_name, pipeline_config_path, pipeline_var
   
   ps = subprocess.Popen(("op", "get", "item",  pipeline_onepassword_key, "--session=" + OP_SESSION_armakuni), stdout=subprocess.PIPE)
   Uuid = subprocess.check_output(("jq", ".uuid"), stdin=ps.stdout)
+  uid = Uuid.decode('utf-8')
   print("uuid = "+Uuid.decode('utf-8'))
   ps.wait()
 
  
 
-  gps = subprocess.getoutput("op  get document "+ Uuid.decode('utf-8'))
+  gps = subprocess.getoutput("op  get document "+ uid)
 
   print("------------gps -----------" + gps)
   #subprocess.call(['op', 'get', 'document', Uuid.decode('ascii'), '>', 'gitkey.key']) 
