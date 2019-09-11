@@ -70,9 +70,10 @@ def set_pipeline(path, target, pipeline_name, pipeline_config_path, pipeline_var
   
   os.chdir(path)
   
-  op_login_command = "eval $(echo \"" + ONEPASSWORD_MASTER + "\" | op signin " + ONEPASSWORD_SUBDOMAIN + " " + ONEPASSWORD_ACCOUNT + " " + ONEPASSWORD_SECRET + ")"
+  op_login_command = "eval $(echo \"" + ONEPASSWORD_MASTER + "\" | op signin " + ONEPASSWORD_SUBDOMAIN + " " + ONEPASSWORD_ACCOUNT + " " + ONEPASSWORD_SECRET + " --output=raw)"
   print(op_login_command)
   os.system("TOKEN = $("+op_login_command+")")
+  os.system("echo $TOKEN")
   os.system("echo $OP_SESSION_armakuni")
   os.system("UUID=$(op get item \"" + pipeline_onepassword_key + "\" --session=$OP_SESSION_armakuni | jq '.uuid')")
   os.system("VAULTUUID=$(op get item \"" + pipeline_onepassword_key + "\" | jq '.vaultUuid')")
