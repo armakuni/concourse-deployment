@@ -71,7 +71,7 @@ def set_pipeline(path, target, pipeline_name, pipeline_config_path, pipeline_var
   Uuid = subprocess.check_output(("jq", ".uuid"), stdin=ps.stdout)
   ps.wait()
   
-  os.system("op get document " + Uuid.decode('ascii') + "  > gitkey.key 2>&1")
+  os.system("op get document " + Uuid.decode('ascii') + "  &> gitkey.key")
 
   print("FILE GITKEY CONTENT:")
   os.system("cat gitkey.key")
