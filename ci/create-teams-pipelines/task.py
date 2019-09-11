@@ -73,7 +73,7 @@ def set_pipeline(path, target, pipeline_name, pipeline_config_path, pipeline_var
   print("uuid = "+ uid)
   ps.wait()
 
-  gkey = subprocess.check_output(("op",  "get", "document", uid), stdin=ps.stdout)
+  gkey = subprocess.check_output(("op",  "get", "document", uid.split('"')[1]), stdin=ps.stdout)
 
   # gps = subprocess.getoutput("op  get document "+ uid)
 
