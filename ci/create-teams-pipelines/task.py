@@ -123,7 +123,7 @@ for team in teams:
     Repo.clone_from(repository['url'], REPOSITORY_DIRECTORY)
     pipeline_created = set_pipeline(REPOSITORY_DIRECTORY, target, repository['pipeline_name'], repository['pipeline_config_path'], repository['pipeline_vars_path'], repository['pipeline_onepassword_key'])
     os.chdir(MAIN_DIRECTORY)
-    #os.system("rm -drf " + REPOSITORY_DIRECTORY)
+    #os.system("rm -drf " + REPOSITORY_DIRECTORY) #UNDO THIS COMMENTED LINE
 # Print Fly Targets
 print("Fly Targets")
 os.system("fly targets")

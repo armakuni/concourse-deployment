@@ -99,7 +99,7 @@
         pipeline_name: radar
         pipeline_config_path: pipeline.yml
         pipeline_vars_path: [ secrets/pipeline-secrets.yml ]
-        pipeline_onepassword_key: radar.key - build your own radar git-crypt
+        pipeline_onepassword_key: build your own radar git-crypt
 - vsm:
     repositories: 
       - url: git@bitbucket.org:armakuni/value-stream-mapping-ui.git
