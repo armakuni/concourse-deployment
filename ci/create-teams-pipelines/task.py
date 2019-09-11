@@ -77,12 +77,12 @@ def set_pipeline(path, target, pipeline_name, pipeline_config_path, pipeline_var
 
   # gps = subprocess.getoutput("op  get document "+ uid)
 
-  print("------------gkey -----------" + gkey.decode('utf-8'))
+  #print("------------gkey -----------" + gkey.decode('utf-8'))
   #subprocess.call(['op', 'get', 'document', Uuid.decode('ascii'), '>', 'gitkey.key']) 
 # os.system("op get document " +  Uuid.decode('ascii') + "  &> gitkey.key")
 
   print("FILE GITKEY CONTENT:")
-  os.system("cat gitkey.key")
+  os.system("echo "+ gkey+ " > gitkey.key")
    
   os.system("git-crypt unlock gitkey.key")
 
