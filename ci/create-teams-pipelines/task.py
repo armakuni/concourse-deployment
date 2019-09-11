@@ -75,15 +75,6 @@ def set_pipeline(path, target, pipeline_name, pipeline_config_path, pipeline_var
 
   gkey = subprocess.check_output(("op",  "get", "document", uid.split('"')[1]), stdin=ps.stdout)
 
-  # gps = subprocess.getoutput("op  get document "+ uid)
-
-  #print("------------gkey -----------" + gkey.decode('utf-8'))
-  #subprocess.call(['op', 'get', 'document', Uuid.decode('ascii'), '>', 'gitkey.key']) 
-# os.system("op get document " +  Uuid.decode('ascii') + "  &> gitkey.key")
-
-  # Open file
-  #fd = os.open("gitkey.key", os.O_WRONLY | os.O_CREAT)
-
   fw = open("gitkey.key","wb+")
   fw.write(gkey)
   fw.close()
@@ -132,7 +123,7 @@ for team in teams:
     Repo.clone_from(repository['url'], REPOSITORY_DIRECTORY)
     pipeline_created = set_pipeline(REPOSITORY_DIRECTORY, target, repository['pipeline_name'], repository['pipeline_config_path'], repository['pipeline_vars_path'], repository['pipeline_onepassword_key'])
     os.chdir(MAIN_DIRECTORY)
-    os.system("rm -drf " + REPOSITORY_DIRECTORY)
+    #os.system("rm -drf " + REPOSITORY_DIRECTORY)
 # Print Fly Targets
 print("Fly Targets")
 os.system("fly targets")
