@@ -73,6 +73,8 @@ def set_pipeline(path, target, pipeline_name, pipeline_config_path, pipeline_var
   
   os.system("op get document " + Uuid.decode('ascii') + "  > gitkey.key")
 
+
+  os.system("cat gitkey.key")
   os.system("git-crypt migrate-key gitkey.key gitkey1.key")
   os.system("git-crypt unlock gitkey1.key")
 
