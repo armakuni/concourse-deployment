@@ -66,7 +66,7 @@
         pipeline_name: engagement-csv
         pipeline_config_path: pipeline.yml
         pipeline_vars_path: [ private/pipeline-secrets.yml ]
-        pipeline_onepassword_key: 
+        pipeline_onepassword_key: Engagement CSV - git-crypt-key
 - ocr-postits:
     repositories:
       - url: git@bitbucket.org:armakuni/ocr-postits.git
@@ -92,7 +92,7 @@
         pipeline_name: the-way
         pipeline_config_path: pipeline.yml
         pipeline_vars_path: [ secrets/pipeline-secrets.yml ]
-        pipeline_onepassword_key: 
+        pipeline_onepassword_key: theway.key - git-crypt key - ak-way-v2
 - radar:
     repositories:
       - url: git@bitbucket.org:armakuni/build-your-own-radar.git
