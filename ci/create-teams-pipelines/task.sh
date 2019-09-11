@@ -42,4 +42,4 @@ eval $(echo "$ONEPASSWORD_MASTER" | op signin $ONEPASSWORD_SUBDOMAIN $ONEPASSWOR
 op get item dqsuxuhnmbflbbne4krdkkuqfa --session=$OP_SESSION_armakuni
 
 # Run Python script
-python concourse-deployment/ci/create-teams-pipelines/task.py $CONCOURSE_URL $CONCOURSE_USERNAME $CONCOURSE_PASSWORD 
+python concourse-deployment/ci/create-teams-pipelines/task.py $CONCOURSE_URL $CONCOURSE_USERNAME $CONCOURSE_PASSWORD $OP_SESSION_armakuni
