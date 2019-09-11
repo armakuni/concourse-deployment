@@ -71,7 +71,11 @@ def set_pipeline(path, target, pipeline_name, pipeline_config_path, pipeline_var
   Uuid = subprocess.check_output(("jq", ".uuid"), stdin=ps.stdout)
   ps.wait()
 
-  subprocess.call(['op', 'get', 'document', Uuid.decode('ascii'), '>', 'gitkey.key']) 
+
+  gps = subprocess.Popen(('op', 'get', 'document', Uuid.decode('ascii')), stdout=subprocess.PIPE)
+  gk = subprocess.check_output(('>','gitkey.key'), stdin=ps.stdout)
+  gps.wait()
+  #subprocess.call(['op', 'get', 'document', Uuid.decode('ascii'), '>', 'gitkey.key']) 
 # os.system("op get document " +  Uuid.decode('ascii') + "  &> gitkey.key")
 
   print("FILE GITKEY CONTENT:")
