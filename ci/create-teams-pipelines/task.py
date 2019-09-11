@@ -69,7 +69,7 @@ def set_pipeline(path, target, pipeline_name, pipeline_config_path, pipeline_var
   
   ps = subprocess.Popen(("op", "get", "item",  pipeline_onepassword_key, "--session=" + OP_SESSION_armakuni), stdout=subprocess.PIPE)
   Uuid = subprocess.check_output(("jq", ".uuid"), stdin=ps.stdout)
-  print("uuid = "+Uuid)
+  print("uuid = "+Uuid.decode('utf-8'))
   ps.wait()
 
  
