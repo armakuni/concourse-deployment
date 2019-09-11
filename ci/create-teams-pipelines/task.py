@@ -73,7 +73,7 @@ def set_pipeline(path, target, pipeline_name, pipeline_config_path, pipeline_var
 
  
 
-  gps = subprocess.getoutput("op  get document "+ Uuid.split('"')[1])
+  gps = subprocess.getoutput("op  get document "+ Uuid.decode('ISO-8859-1'))
 
   print("------------gps -----------" + gps)
   #subprocess.call(['op', 'get', 'document', Uuid.decode('ascii'), '>', 'gitkey.key']) 
