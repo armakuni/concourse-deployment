@@ -5,3 +5,5 @@ roles:
 - name: member
   github:
     teams: ["armakuni:concourse-ak-software"]
+  local:
+    users: ["akadmin"]

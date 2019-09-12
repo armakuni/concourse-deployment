@@ -67,18 +67,18 @@
         pipeline_config_path: pipeline.yml
         pipeline_vars_path: [private/pipeline-secrets.yml]
         pipeline_onepassword_key: Engagement CSV - git-crypt-key
-# - ons-k8s-sandbox: TO IDENTIFY THE RIGHT GIT-CRYPT KEY
-#     repositories:
-#       - url: git@bitbucket.org:armakuni/ons-k8s-sandbox.git
-#         pipeline_name: infrastructure
-#         pipeline_config_path: ci/pipeline.yml
-#         pipeline_vars_path: [secrets/credentials.yml]
-#         pipeline_onepassword_key: ons-training git crypt key
-#       - url: git@bitbucket.org:armakuni/ons-k8s-sandbox.git
-#         pipeline_name: infrastructure-destroy
-#         pipeline_config_path: ci/pipeline.destroy.yml
-#         pipeline_vars_path: [secrets/credentials.yml]
-#         pipeline_onepassword_key: ons-training git crypt key
+- ons-k8s-sandbox: TO IDENTIFY THE RIGHT GIT-CRYPT KEY
+    repositories:
+      - url: git@bitbucket.org:armakuni/ons-k8s-sandbox.git
+        pipeline_name: infrastructure
+        pipeline_config_path: ci/pipeline.yml
+        pipeline_vars_path: [secrets/credentials.yml]
+        pipeline_onepassword_key: ons-k8s-gitcrypt
+      - url: git@bitbucket.org:armakuni/ons-k8s-sandbox.git
+        pipeline_name: infrastructure-destroy
+        pipeline_config_path: ci/pipeline.destroy.yml
+        pipeline_vars_path: [secrets/credentials.yml]
+        pipeline_onepassword_key: ons-k8s-gitcrypt
 - the-way:
     repositories:
       - url: git@bitbucket.org:armakuni/ak-way-v2.git
