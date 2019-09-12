@@ -20,7 +20,7 @@
         pipeline_name: raindrops-le
         pipeline_config_path: ci/pipeline.yaml
         pipeline_vars_path: [secrets/pipeline_secrets.yaml]
-        pipeline_onepassword_key: raindrops_ts_key GitCrypt
+        pipeline_onepassword_key: raindrops-jnonino-git-crypt
       - url: git@bitbucket.org:armakuni/savage-bot.git
         pipeline_name: savage-bot
         pipeline_config_path: ci/pipeline.yml
@@ -35,12 +35,12 @@
         pipeline_name: as-fizzbuzzfeed
         pipeline_config_path: pipeline.yml
         pipeline_vars_path: [private/pipeline-secrets.yml]
-        pipeline_onepassword_key: Agile Scotland git-crypt key [fizzbuzzfeed.key]
+        pipeline_onepassword_key: Agile-Scotland-git-crypt-key[fizzbuzzfeed.key]
       - url: git@github.com:armakuni/buzzfizzfeed.git
         pipeline_name: as-buzzfizzfeed
         pipeline_config_path: pipeline.yml
         pipeline_vars_path: [private/pipeline-secrets.yml]
-        pipeline_onepassword_key: Agile Scotland git-crypt key[buzzfizzfeed.key]
+        pipeline_onepassword_key: Agile-Scotland-git-crypt-key[buzzfizzfeed.key]
 - ak-software-learning:
     repositories:
       - url: git@bitbucket.org:armakuni/adoption-pack-generator.git
@@ -67,13 +67,13 @@
         pipeline_config_path: pipeline.yml
         pipeline_vars_path: [private/pipeline-secrets.yml]
         pipeline_onepassword_key: Engagement CSV - git-crypt-key
-- ocr-postits:
-    repositories:
-      - url: git@bitbucket.org:armakuni/ocr-postits.git
-        pipeline_name: ocr-postits
-        pipeline_config_path: pipeline.yml
-        pipeline_vars_path: [private/gitkey.yml, private/secrets.yml]
-        pipeline_onepassword_key: ocr-postits gi-crypt key
+# - ocr-postits: NO NEEDS TO DEPLOY THIS ONE git@bitbucket.org:armakuni/ocr-postits.git
+#     repositories:
+#       - url: git@bitbucket.org:armakuni/ocr-postits.git
+#         pipeline_name: ocr-postits
+#         pipeline_config_path: pipeline.yml
+#         pipeline_vars_path: [private/gitkey.yml, private/secrets.yml]
+#         pipeline_onepassword_key: ocr-postits gi-crypt key
 # - ons-k8s-sandbox: TO IDENTIFY THE RIGHT GIT-CRYPT KEY
 #     repositories:
 #       - url: git@bitbucket.org:armakuni/ons-k8s-sandbox.git
@@ -99,7 +99,7 @@
         pipeline_name: radar
         pipeline_config_path: pipeline.yml
         pipeline_vars_path: [secrets/pipeline-secrets.yml]
-        pipeline_onepassword_key: build your own radar git-crypt
+        pipeline_onepassword_key: build-your-own-radar-git-crypt-key
 - vsm:
     repositories: 
       - url: git@bitbucket.org:armakuni/value-stream-mapping-ui.git
