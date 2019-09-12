@@ -67,7 +67,7 @@
         pipeline_config_path: pipeline.yml
         pipeline_vars_path: [private/pipeline-secrets.yml]
         pipeline_onepassword_key: Engagement CSV - git-crypt-key
-- ons-k8s-sandbox: TO IDENTIFY THE RIGHT GIT-CRYPT KEY
+- ons-k8s-sandbox:
     repositories:
       - url: git@bitbucket.org:armakuni/ons-k8s-sandbox.git
         pipeline_name: infrastructure
