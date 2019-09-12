@@ -83,12 +83,14 @@ def set_pipeline(path, target, pipeline_name, pipeline_config_path, pipeline_var
    
   os.system("git-crypt unlock gitkey.key")
 
+  #Set pipeline  
   command = "fly set-pipeline -n"
-  command += " --target " + target
-  command += " --pipeline " + pipeline_name
-  command += " --config " + path + '/' + pipeline_config_path
+  command += " -t " + target
+  command += " -p " + pipeline_name
+  command += " -c " + path + '/' + pipeline_config_path
+  # command += " -l " + pipeline_vars_paths[0]
   for vars_path in pipeline_vars_paths:
-    command += " --load-vars-from " + vars_path
+    command += " -l " + vars_path
   
   print("     Command to Set Pipeline: " + command) # REMOVE THIS LINE
   os.system(command)
