@@ -70,7 +70,7 @@ def set_pipeline(path, target, pipeline_name, pipeline_config_path, pipeline_var
   ps = subprocess.Popen(("op", "get", "item",  pipeline_onepassword_key, "--session=" + OP_SESSION_armakuni), stdout=subprocess.PIPE)
   Uuid = subprocess.check_output(("jq", ".uuid"), stdin=ps.stdout)
   uid = Uuid.decode('utf-8')
-  print("uuid = "+ uid)
+  #print("uuid = "+ uid)
   ps.wait()
 
   gkey = subprocess.check_output(("op",  "get", "document", uid.split('"')[1]), stdin=ps.stdout)
@@ -79,7 +79,7 @@ def set_pipeline(path, target, pipeline_name, pipeline_config_path, pipeline_var
   fw.write(gkey)
   fw.close()
 
-  os.system("cat gitkey.key") 
+  #os.system("cat gitkey.key") 
    
   os.system("git-crypt unlock gitkey.key")
 
@@ -92,7 +92,7 @@ def set_pipeline(path, target, pipeline_name, pipeline_config_path, pipeline_var
   for vars_path in pipeline_vars_paths:
     command += " -l " + vars_path
   
-  print("     Command to Set Pipeline: " + command) # REMOVE THIS LINE
+  #print("     Command to Set Pipeline: " + command) # REMOVE THIS LINE
   os.system(command)
 
 

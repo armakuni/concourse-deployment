@@ -20,7 +20,7 @@
         pipeline_name: raindrops-le
         pipeline_config_path: ci/pipeline.yaml
         pipeline_vars_path: [secrets/pipeline_secrets.yaml]
-        pipeline_onepassword_key: raindrops-jnonino-git-crypt
+        pipeline_onepassword_key: raindrops_ts_key GitCrypt
       - url: git@bitbucket.org:armakuni/savage-bot.git
         pipeline_name: savage-bot
         pipeline_config_path: ci/pipeline.yml
@@ -67,13 +67,6 @@
         pipeline_config_path: pipeline.yml
         pipeline_vars_path: [private/pipeline-secrets.yml]
         pipeline_onepassword_key: Engagement CSV - git-crypt-key
-# - ocr-postits: NO NEEDS TO DEPLOY THIS ONE git@bitbucket.org:armakuni/ocr-postits.git
-#     repositories:
-#       - url: git@bitbucket.org:armakuni/ocr-postits.git
-#         pipeline_name: ocr-postits
-#         pipeline_config_path: pipeline.yml
-#         pipeline_vars_path: [private/gitkey.yml, private/secrets.yml]
-#         pipeline_onepassword_key: ocr-postits gi-crypt key
 # - ons-k8s-sandbox: TO IDENTIFY THE RIGHT GIT-CRYPT KEY
 #     repositories:
 #       - url: git@bitbucket.org:armakuni/ons-k8s-sandbox.git
@@ -113,7 +106,7 @@
         pipeline_name: rbs-devops-capability
         pipeline_config_path: ci/pipeline.yaml
         pipeline_vars_path: [secrets/credentials.yaml]
-        pipeline_onepassword_key: RBS Devops Assessment Git Crypt Key
+        pipeline_onepassword_key: devops_techtree_prettifier
 - main:
     repositories:
       - url: git@bitbucket.org:armakuni/cubinote-webhook.git
