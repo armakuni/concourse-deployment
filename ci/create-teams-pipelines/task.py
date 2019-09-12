@@ -120,11 +120,13 @@ for team in teams:
   target_created = create_target(target, CONCOURSE_URL, CONCOURSE_USERNAME, CONCOURSE_PASSWORD, team)
   
   for repository in get_repositories_from_team(data, team):
+    print("------------------------ START PIPELINE: " + repository['pipeline_name'] + "-------------------------------")
     REPOSITORY_DIRECTORY = MAIN_DIRECTORY + "/" + team + "-" + repository['pipeline_name']
     print("     Cloning Repository: " + repository['url'])
     Repo.clone_from(repository['url'], REPOSITORY_DIRECTORY)
     pipeline_created = set_pipeline(REPOSITORY_DIRECTORY, target, repository['pipeline_name'], repository['pipeline_config_path'], repository['pipeline_vars_path'], repository['pipeline_onepassword_key'])
     os.chdir(MAIN_DIRECTORY)
+    print("------------------------ END PIPELINE: " + repository['pipeline_name'] + "-------------------------------\n\n\n")
     #os.system("rm -drf " + REPOSITORY_DIRECTORY) #UNDO THIS COMMENTED LINE
 # Print Fly Targets
 print("Fly Targets")
