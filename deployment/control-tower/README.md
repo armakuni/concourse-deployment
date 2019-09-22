@@ -4,7 +4,7 @@
 
 Run the container
 
-        docker run --tty --interactive --env AWS_ACCESS_KEY_ID='<YOUR_AWS_ACCESS_KEY>' --env AWS_SECRET_ACCESS_KEY='<YOUR_AWS_SECRET_KEY>' --name control-tower jnonino/control-tower bash
+        docker run --tty --interactive --env AWS_ACCESS_KEY_ID='<YOUR_AWS_ACCESS_KEY>' --env AWS_SECRET_ACCESS_KEY='<YOUR_AWS_SECRET_KEY>' --name control-tower cnservices/control-tower bash
 
 After running that command you will prompted to the container environment, you can run the following Control Tower commands:
 
